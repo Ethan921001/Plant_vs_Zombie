@@ -22,7 +22,6 @@ public abstract class Entity{
 	//圖片路徑
 	private String imgsrc;
 	
-	private ImageIcon icon;
 	
 	public Entity(String name, int row, int col) {
 		set_name(name);
@@ -32,7 +31,6 @@ public abstract class Entity{
 		set_bounding_box_height(71);
 		set_x(250+83*col);
 		set_y(90+100*row);
-		load_icon();
 	}
 	
 	
@@ -108,9 +106,6 @@ public abstract class Entity{
 		this.imgsrc=imgsrc;
 	}
 	
-	public void load_icon() {
-		this.icon = new ImageIcon(imgsrc);
-	}
 	
 	public void move() {
 		set_x(get_x()+get_speed());
@@ -145,6 +140,10 @@ public abstract class Entity{
 		else{
 			System.out.println("no hit");
 		}
+	}
+	
+	public void turn_to_die() {
+		
 	}
 	
 }

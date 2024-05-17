@@ -11,7 +11,6 @@ public class Zombie extends Entity{
 		set_y(20+100*row);
 		set_speed(-2);
 		set_imgsrc("Images/Zombies/zombie.gif");
-		load_icon();
 	}
 	
 	public boolean zombie_hit(Plant plant) {
@@ -26,4 +25,16 @@ public class Zombie extends Entity{
 		}
 		return false;
 	}	
+	
+	public void turn_to_attack(){
+		set_imgsrc("Images/Zombies/zombie_attack.gif");
+	}
+	
+	public void turn_to_walk(){
+		set_imgsrc("Images/Zombies/zombie.gif");
+	}
+	
+	public void turn_to_die(){
+		set_imgsrc("Images/Zombies/zombie_died.gif");
+	}
 }

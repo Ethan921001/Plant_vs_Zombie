@@ -27,11 +27,17 @@ public class GameStage {
 	}
 	
 	public void play_game() {
-		while(true) {
-			zombie_factory.summon_zombie(this);
+		while(true){
+			zombie_factory.summon_zombie(this);			
 			for(int i=0;i<entities.size();i++) {
 				Entity entity=entities.get(i);
-				entity.move();
+				if(entity.get_x()<200) {
+					entity.turn_to_die();
+				}
+			
+					entity.move();
+				
+				
 			}
 			map_view.paint();
 			try {

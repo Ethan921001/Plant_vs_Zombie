@@ -10,7 +10,6 @@ public class Plant extends Entity {
 		set_bounding_box_width(71);
 		set_speed(0);
 		set_imgsrc("Images/Plants/peaShooter.gif");
-		load_icon();
 	}
 	
 	public boolean plant_hit(Zombie zombie) {
