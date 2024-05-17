@@ -25,16 +25,16 @@ public class MapView extends JFrame{
 		
 	}
 	
-	public void paint(Graphics g) {
-		super.paint(g);
+	public void paint() {
+		super.paint(this.getGraphics());
 		
 		Image background = new ImageIcon("Images/Backgrounds/background1.png").getImage();
-		g.drawImage(background, 0, 0, null);
+		this.getGraphics().drawImage(background, 0, 0, null);
 		
 		for(int i=0;i<entities.size();i++) {
 			Entity entity = entities.get(i);
 			Image img = new ImageIcon(entity.get_imgsrc()).getImage();
-			g.drawImage(img, entity.get_x(), entity.get_y(), null);
+			this.getGraphics().drawImage(img, entity.get_x(), entity.get_y(), null);
 		}
 		
 		

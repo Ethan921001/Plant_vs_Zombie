@@ -1,6 +1,10 @@
 package model.system;
 
-public class MoveEntity {
+import java.util.ArrayList;
 
+import model.Entity.Entity;
+
+public class MoveEntity {
+	ArrayList<Entity> entities;
 	
 }

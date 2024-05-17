@@ -9,6 +9,7 @@ public class Zombie extends Entity{
 		set_bounding_box_width(166);
 		set_bounding_box_height(144);
 		set_y(20+100*row);
+		set_speed(-2);
 		set_imgsrc("Images/Zombies/zombie.gif");
 		load_icon();
 	}

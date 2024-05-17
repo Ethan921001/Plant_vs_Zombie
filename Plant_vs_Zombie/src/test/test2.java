@@ -34,7 +34,7 @@ public class test2 extends JPanel{
 		}
 		
 		MapView ev = new MapView(entities);
-		ev.paint(ev.getGraphics());
+		ev.paint();
 
 	}
 

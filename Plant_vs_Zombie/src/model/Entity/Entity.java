@@ -8,13 +8,15 @@ import javax.swing.JLabel;
 public abstract class Entity{
 	
 	//行數、列數
-	private int row, col;
+	private int row=0, col=0;
 	//xy座標
-	private int x, y;
+	private int x=0, y=0;
+	//速度(負值向左、0不動、正值向右)
+	private int speed=0;
 	//生命值
 	private int  health=100;
 	//圖像路徑
-	private String name;
+	private String name=" ";
 	//碰撞箱長、寬
 	private int bounding_box_width, bounding_box_height;
 	//圖片路徑
@@ -108,6 +110,19 @@ public abstract class Entity{
 	
 	public void load_icon() {
 		this.icon = new ImageIcon(imgsrc);
+	}
+	
+	public void move() {
+		set_x(get_x()+get_speed());
+	
+	}
+	
+	public int get_speed() {
+		return speed;
+	}
+	
+	public void set_speed(int speed) {
+		this.speed=speed;
 	}
 	
 	static public void main(String[] args) {
