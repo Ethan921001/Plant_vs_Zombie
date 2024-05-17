@@ -26,6 +26,7 @@ public class GameStage {
 		map_view=new MapView(entities);
 	}
 	
+	//遊戲主程式迴圈
 	public void play_game() {
 		while(true){
 			zombie_factory.summon_zombie(this);			
@@ -34,14 +35,16 @@ public class GameStage {
 				if(entity.get_x()<200) {
 					entity.turn_to_die();
 				}
-			
+				else {
 					entity.move();
-				
-				
+				}	
 			}
+			
+			
+			//更新顯示畫面
 			map_view.paint();
 			try {
-				thread.sleep(50);
+				thread.sleep(30);
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}

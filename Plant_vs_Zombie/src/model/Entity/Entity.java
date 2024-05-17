@@ -15,6 +15,8 @@ public abstract class Entity{
 	private int speed=0;
 	//生命值
 	private int  health=100;
+	//存活與否
+	private boolean alive=true;
 	//圖像路徑
 	private String name=" ";
 	//碰撞箱長、寬
@@ -119,7 +121,17 @@ public abstract class Entity{
 	public void set_speed(int speed) {
 		this.speed=speed;
 	}
+	//將圖像切換為死亡
+	abstract public void turn_to_die();
 	
+	public void set_alive(boolean alive) {
+		this.alive=alive;
+	}
+	
+	public boolean is_alive() {
+		return alive;
+	}
+	/*test
 	static public void main(String[] args) {
 		Plant p = new Plant("p", 0, 0);
 		Zombie z = new Zombie("z", 0, 0);
@@ -141,10 +153,8 @@ public abstract class Entity{
 			System.out.println("no hit");
 		}
 	}
+	*/
 	
-	public void turn_to_die() {
-		
-	}
 	
 }
 
