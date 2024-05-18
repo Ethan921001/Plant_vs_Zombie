@@ -24,7 +24,7 @@ public class ZombieFactory {
 			Random random = new Random();
 			int rand_row = random.nextInt(0, 5);
 			System.out.println(rand_row);
-			Zombie zombie = new Zombie("z", rand_row, 8);
+			Zombie zombie = new Zombie("z", rand_row, 9);
 			stage.add_entity(zombie);
 			stage.add_zombie(zombie);
 		}	

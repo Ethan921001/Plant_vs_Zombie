@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import model.Cards.Card;
 import model.Entity.*;
 
 //繪製地圖
@@ -17,12 +18,15 @@ import model.Entity.*;
 public class MapView extends JFrame{
 	
 	private ArrayList<Entity> entities;
-	public MapView(ArrayList<Entity> entities) {
+	private Card card;
+	public MapView(ArrayList<Entity> entities, Card card) {
 		setSize(1400, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		this.entities = entities;
-		
+		this.card = card;
+		addMouseListener(card);
+		addMouseMotionListener(card);
 	}
 	
 	public void paint() {
@@ -37,6 +41,9 @@ public class MapView extends JFrame{
 			this.getGraphics().drawImage(img, entity.get_x(), entity.get_y(), null);
 		}
 		
+		//draw card
+		Image img = new ImageIcon(card.get_imgsrc()).getImage();
+		this.getGraphics().drawImage(img , card.get_cur_x(), card.get_cur_y(), null);
 		
 	}
 	

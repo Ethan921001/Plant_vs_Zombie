@@ -6,17 +6,20 @@ import javax.swing.JFrame;
 
 import view.*;
 import model.*;
+import model.Cards.Card;
 import model.Entity.*;
 import model.judger.*;
 
 //遊戲中所有model將在這裡被調用
 public class GameStage {
 	
+	private Card card;
 	private ArrayList<Plant> plants;
 	private ArrayList<Zombie> zombies;
 	private ArrayList<Bullet> bullets;
 	private ArrayList<Entity> entities;
 	private ZombieFactory zombie_factory;
+	private PlantFactory plant_factory;
 	private MapView map_view;
 	private Thread thread;
 	private Judger judger;
@@ -26,20 +29,16 @@ public class GameStage {
 		bullets=new ArrayList<Bullet>();
 		entities=new ArrayList<Entity>();	
 		zombie_factory=new ZombieFactory();
+		plant_factory=new PlantFactory(plants,entities);
 		thread=new Thread();
-		map_view=new MapView(entities);
+		card=new Card(plant_factory);
+		map_view=new MapView(entities,card);
 		judger=new Judger();
 	}
 	
 	//遊戲主程式迴圈
 	public void play_game() {
-		
-		for(int i=0;i<=4;i++) {
-			Plant plant = new Plant("p", i, 1);
-			plants.add(plant);
-			entities.add(plant);
-		}
-		
+
 		while(true){
 			zombie_factory.summon_zombie(this);			
 			for(int i=0;i<entities.size();i++) {
@@ -69,7 +68,7 @@ public class GameStage {
 			//更新顯示畫面
 			map_view.paint();
 			try {
-				thread.sleep(30);
+				thread.sleep(70);
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}

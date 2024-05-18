@@ -14,7 +14,7 @@ public abstract class Entity{
 	//速度(負值向左、0不動、正值向右)
 	private int speed=0;
 	//生命值
-	private int  health=100;
+	private int  health=5;
 	//存活與否
 	private boolean alive=true;
 	//圖像路徑
