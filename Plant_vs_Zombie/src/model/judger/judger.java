@@ -2,11 +2,23 @@ package model.judger;
 
 import java.util.ArrayList;
 
-import model.Entity.Plant;
-import model.Entity.Zombie;
+// import model.Entity.Plant;
+// import model.Entity.Zombie;
+import model.Entity.*;
 
 public class judger {
-
+	
+	public void dead_judge(ArrayList<Entity> e) {
+		for(Entity obj : e) {
+			if(obj.get_health() <= 0) obj.set_alive(false);
+		}
+	}
+	
+	public void dead_entities(Arraylist<Entity> e) {
+		for(Entity obj : e) {
+			//
+		}
+	}
 	
 	//碰撞判定
 	public void zombie_hit_plant(ArrayList<Zombie> zombies, ArrayList<Plant> plants) {
