@@ -26,6 +26,8 @@ public class Zombie extends Entity{
 		return false;
 	}	
 	
+	
+	
 	public void turn_to_attack(){
 		set_imgsrc("Images/Zombies/zombie_attack.gif");
 	}
