@@ -3,6 +3,8 @@ package model.Entity;
 
 public class Plant extends Entity {
 	
+	private int counter =0;
+	private int cooldown=40;
 	
 	public Plant(String name, int row, int col)  {
 		super(name, row, col);
@@ -25,5 +27,18 @@ public class Plant extends Entity {
 		}
 		return false;
 	}
+	
+	public boolean shoot() {
+		if(this.counter<cooldown) {
+			counter++;
+			return false;
+			
+		}
+		else {
+			this.counter=0;
+			return true;
+		}
+	}
+	
 }
 

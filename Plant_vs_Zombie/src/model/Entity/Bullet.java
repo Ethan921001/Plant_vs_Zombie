@@ -5,8 +5,8 @@ public class Bullet extends Entity{
 	
 	public Bullet(String name, int row, int col) {
 		super (name, row, col);
-		
-		set_speed(4);
+		set_health(1);
+		set_speed(10);
 		set_imgsrc("Images/Bullets/bullet.png");
 	}
 	
