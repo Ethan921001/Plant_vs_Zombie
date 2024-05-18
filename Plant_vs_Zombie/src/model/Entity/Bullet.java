@@ -19,6 +19,7 @@ public class Bullet extends Entity{
 		if (bullet_row == zombie_row && bullet_x >= zombie_x) {
 			return true;
 		}
+		
 		return false;
 	}
 	
