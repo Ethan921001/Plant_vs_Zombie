@@ -14,9 +14,12 @@ public class judger {
 		}
 	}
 	
-	public void dead_entities(Arraylist<Entity> e) {
-		for(Entity obj : e) {
-			//
+	public void dead_entities(ArrayList<Entity> e) {
+		for(int i = 0; i < e.size(); i++) {
+			if(!e.get(i).is_alive()) {
+				e.remove(i);
+				i--;
+			}
 		}
 	}
 	
