@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import model.Entity.*;
 
 public class judger {
-<<<<<<< HEAD
-=======
 	
 	public void dead_judge(ArrayList<Entity> e) {
 		for(Entity obj : e) {
@@ -24,7 +22,6 @@ public class judger {
 			}
 		}
 	}
->>>>>>> branch 'master' of https://github.com/Ethan921001/Plant_vs_Zombie.git
 	
 	//碰撞判定
 	public void zombie_hit_plant(ArrayList<Zombie> zombies, ArrayList<Plant> plants) {
@@ -38,6 +35,7 @@ public class judger {
 			}
 		}
 	}
+	
 	
 	
 	

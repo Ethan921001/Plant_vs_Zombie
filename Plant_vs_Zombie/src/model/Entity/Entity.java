@@ -131,7 +131,7 @@ public abstract class Entity{
 	public boolean is_alive() {
 		return alive;
 	}
-	/*
+	/*test
 	static public void main(String[] args) {
 		Plant p = new Plant("p", 0, 0);
 		Zombie z = new Zombie("z", 0, 0);
