@@ -46,6 +46,7 @@ public class GameStage {
 			judger.plant_shoot(plants, bullets);
 			judger.zombie_hit_plant(zombies, plants);
 			judger.bullet_hit_zombie(zombies, bullets);
+			judger.zombie_died(zombies);
 			judger.clean_dead_entities(zombies,plants,bullets);
 			//更新顯示畫面
 			map_view.paint();

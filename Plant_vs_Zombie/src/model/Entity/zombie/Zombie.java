@@ -14,7 +14,7 @@ public class Zombie extends Entity{
 		set_speed(-2);
 		set_imgsrc("Images/Zombies/zombie.gif");
 		set_health(2);
-		set_died_time(10);
+		set_max_died_time(50);
 	}
 	
 	public boolean zombie_hit(Plant plant) {

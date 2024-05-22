@@ -18,18 +18,11 @@ public class Judger {
 		entities.addAll(plants);
 		entities.addAll(bullets);
 	}
-	/*
-	public void dead_judge(ArrayList<Entity> entities) {
-		for(Entity entity : entities) {
-			if(entity.get_health() <= 0) {
-				entity.set_alive(false);
-			}
-		}
-	}
-	*/
+
 	public void clean_dead_entities(ArrayList<Zombie> zombies, ArrayList<Plant> plants, ArrayList<Bullet> bullets) {
 		for(int i = 0; i < zombies.size(); i++) {
-			if(!zombies.get(i).is_alive()) {
+			Zombie zombie =zombies.get(i);
+			if(!zombie.is_alive() && zombie.died_time_out()) {
 				zombies.remove(i);
 				i--;
 			}
@@ -75,17 +68,16 @@ public class Judger {
 	}
 	
 	public void bullet_hit_zombie(ArrayList<Zombie> zombies, ArrayList<Bullet> bullets) {
-		for(int i=0;i<zombies.size();i++) {
-			for(int j=0;j<bullets.size();j++) {
-				Zombie zombie=zombies.get(i);
-				Bullet bullet = bullets.get(j);
-				if(bullet.bullet_hit(zombie)) {
+		for(int i=0;i<bullets.size();i++) {
+			Bullet bullet = bullets.get(i);
+			bullet.move();
+			for(int j=0;j<zombies.size();j++) {
+				Zombie zombie=zombies.get(j);
+				if(bullet.bullet_hit(zombie) && zombie.is_alive()) {
 					bullet.set_health(bullet.get_health()-1);
 					zombie.set_health(zombie.get_health()-1);
 				}
-				else {
-					bullet.move();
-				}
+					
 			}
 		}
 	}
@@ -95,6 +87,15 @@ public class Judger {
 			if(plant.shoot()) {
 				Bullet bullet = new Bullet("bullet", plant.get_row(), plant.get_col());
 				bullets.add(bullet);
+			}
+		}
+	}
+	
+	public void zombie_died(ArrayList<Zombie> zombies) {
+		for(int i = 0; i < zombies.size(); i++) {
+			Zombie zombie =zombies.get(i);
+			if(!zombie.is_alive()) {
+				zombie.turn_to_die();
 			}
 		}
 	}

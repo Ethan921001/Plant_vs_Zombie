@@ -6,7 +6,7 @@ import model.Entity.zombie.Zombie;
 public class Plant extends Entity {
 	
 	private int counter =0;
-	private int cooldown=40;
+	private int cooldown=20;
 	
 	public Plant(String name, int row, int col)  {
 		super(name, row, col);
