@@ -1,5 +1,7 @@
-package model.Entity;
+package model.Entity.plant;
 
+import model.Entity.Entity;
+import model.Entity.zombie.Zombie;
 
 public class Plant extends Entity {
 	
@@ -39,6 +41,8 @@ public class Plant extends Entity {
 			return true;
 		}
 	}
+	
+	public void turn_to_die() {}
 	
 }
 

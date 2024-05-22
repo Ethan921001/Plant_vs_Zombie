@@ -3,6 +3,7 @@ package model.Entity;
 import java.util.ArrayList;
 import java.util.Random;
 
+import model.Entity.zombie.Zombie;
 import model.system.GameStage;
 
 //生產殭屍

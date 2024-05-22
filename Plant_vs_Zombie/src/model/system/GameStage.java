@@ -8,6 +8,8 @@ import view.*;
 import model.*;
 import model.Cards.Card;
 import model.Entity.*;
+import model.Entity.plant.Plant;
+import model.Entity.zombie.Zombie;
 import model.judger.*;
 
 //遊戲中所有model將在這裡被調用
@@ -29,10 +31,10 @@ public class GameStage {
 		bullets=new ArrayList<Bullet>();
 		entities=new ArrayList<Entity>();	
 		zombie_factory=new ZombieFactory();
-		plant_factory=new PlantFactory(plants,entities);
+		plant_factory=new PlantFactory(plants);
 		thread=new Thread();
 		card=new Card(plant_factory);
-		map_view=new MapView(entities,card);
+		map_view=new MapView(zombies,plants,bullets,card);
 		judger=new Judger();
 	}
 	
@@ -41,30 +43,10 @@ public class GameStage {
 
 		while(true){
 			zombie_factory.summon_zombie(this);			
-			for(int i=0;i<entities.size();i++) {
-				Entity entity=entities.get(i);
-				if(entity.get_x()<200) {
-					entity.turn_to_die();
-				}
-				else {
-					entity.move();
-				}	
-			}
-			
-			for(int i=0;i<plants.size();i++) {
-				Plant plant=plants.get(i);
-				if(plant.shoot()) {
-					Bullet bullet = new Bullet("bullet",plant.get_row(), plant.get_col());
-					entities.add(bullet);
-					bullets.add(bullet);
-				}
-				
-			}
-			
+			judger.plant_shoot(plants, bullets);
 			judger.zombie_hit_plant(zombies, plants);
 			judger.bullet_hit_zombie(zombies, bullets);
-			judger.dead_judge(entities);
-			judger.clean_dead_entities(entities,zombies,plants,bullets);
+			judger.clean_dead_entities(zombies,plants,bullets);
 			//更新顯示畫面
 			map_view.paint();
 			try {

@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 
 import view.*;
 import model.Entity.*;
+import model.Entity.plant.Plant;
+import model.Entity.zombie.Zombie;
 
 public class test2 extends JPanel{
 	
@@ -33,8 +35,8 @@ public class test2 extends JPanel{
 			entities.add(p);
 		}
 		
-		MapView ev = new MapView(entities);
-		ev.paint();
+		//MapView ev = new MapView(entities);
+		//ev.paint();
 
 	}
 

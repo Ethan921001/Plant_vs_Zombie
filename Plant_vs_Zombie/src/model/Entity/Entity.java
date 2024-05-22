@@ -15,6 +15,8 @@ public abstract class Entity{
 	private int speed=0;
 	//生命值
 	private int  health=5;
+	//死亡後存在時間
+	private int died_time=0;
 	//存活與否
 	private boolean alive=true;
 	//圖像路徑
@@ -92,6 +94,14 @@ public abstract class Entity{
 		this.health = h;
 	}
 	
+	public int get_died_time() {
+		return died_time;
+	}
+	
+	public void set_died_time(int died_time) {
+		this.died_time=died_time;
+	}
+	
 	public void set_name(String s) {
 		this.name=s;
 	}
@@ -129,7 +139,7 @@ public abstract class Entity{
 	}
 	
 	public boolean is_alive() {
-		return alive;
+		return this.health>0;
 	}
 	/*test
 	static public void main(String[] args) {

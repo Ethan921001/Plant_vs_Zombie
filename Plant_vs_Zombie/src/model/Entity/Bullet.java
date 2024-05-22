@@ -1,5 +1,7 @@
 package model.Entity;
 
+import model.Entity.zombie.Zombie;
+
 public class Bullet extends Entity{
 	
 	

@@ -3,8 +3,8 @@ package model.Cards;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-import model.Entity.Plant;
 import model.Entity.PlantFactory;
+import model.Entity.plant.Plant;
 
 import java.awt.event.MouseEvent;
 
@@ -14,6 +14,7 @@ public class Card implements MouseMotionListener, MouseListener{
 	private int initial_x=50, initial_y=50;
 	private int cur_x=50, cur_y=50;
 	private int width =71, height=71;
+	private int offset_x=35, offset_y=35;
 	private boolean draging = false;
 	private String imgsrc="Images\\Plants\\Peashooter1.png";
 	
@@ -43,8 +44,8 @@ public class Card implements MouseMotionListener, MouseListener{
 	
 	public void mouseDragged(MouseEvent e) {
 		if(draging) {
-			this.cur_x = e.getX();
-			this.cur_y = e.getY();
+			this.cur_x = e.getX()-this.offset_x;
+			this.cur_y = e.getY()-this.offset_y;
 		}
 	}
 	public void mouseReleased(MouseEvent e) {
