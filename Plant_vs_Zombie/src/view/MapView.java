@@ -23,7 +23,7 @@ public class MapView extends JFrame{
 	private ArrayList<Bullet> bullets;
 	private Card card;
 	private Judger judger;
-	public MapView(ArrayList<Zombie> zombies, ArrayList<Plant> plants, ArrayList<Bullet> bullets , Card card) {
+	public MapView(ArrayList<Zombie> zombies, ArrayList<Plant> plants, ArrayList<Bullet> bullets , Card card, Judger judger) {
 		this.zombies=zombies;
 		this.plants=plants;
 		this.bullets=bullets;
@@ -31,6 +31,7 @@ public class MapView extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		this.card = card;
+		this.judger = judger;
 		addMouseListener(card);
 		addMouseMotionListener(card);
 	}
@@ -69,7 +70,9 @@ public class MapView extends JFrame{
 	}
 	
 	public void gameover_view() {
-		Image gameover = new ImageIcon("Images\\Gameover\\gameover.png").getImage();
-		this.getGraphics().drawImage(gameover, 300, 100, null);
+		if(judger.gameover(zombies)) {
+			Image gameover = new ImageIcon("Images\\Gameover\\gameover.png").getImage();
+			this.getGraphics().drawImage(gameover, 300, 100, null);
+		}
 	}
 }
