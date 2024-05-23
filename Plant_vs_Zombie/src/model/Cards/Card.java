@@ -30,6 +30,7 @@ public class Card implements MouseMotionListener, MouseListener{
 		return cur_x;
 	}
 	
+	
 	public int get_cur_y() {
 		return cur_y;
 	}
