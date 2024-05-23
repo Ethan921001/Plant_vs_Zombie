@@ -30,19 +30,27 @@ public class Plant extends Entity {
 		return false;
 	}
 	
+	//默認無法射擊
 	public boolean shoot() {
-		if(this.counter<cooldown) {
-			counter++;
-			return false;
-			
-		}
-		else {
-			this.counter=0;
-			return true;
-		}
+		return false;
 	}
 	
+	//植物無死亡動畫
 	public void turn_to_die() {}
+	
+	public int get_cooldown() {
+		return cooldown;
+	}
+	public int get_counter() {
+		return counter;
+	}
+	
+	public void set_counter(int count) {
+		counter = count;
+	}
+	public void add_counter() {
+		counter++;
+	}
 	
 }
 

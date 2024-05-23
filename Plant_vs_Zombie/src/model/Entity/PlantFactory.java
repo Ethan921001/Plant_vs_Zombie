@@ -2,7 +2,7 @@ package model.Entity;
 
 import java.util.ArrayList;
 
-import model.Entity.plant.Plant;
+import model.Entity.plant.*;
 
 public class PlantFactory {
 
@@ -14,13 +14,24 @@ public class PlantFactory {
 		this.plants=plants;
 	}
 	
-	public void place_plant(int x, int y) {
+	public void place_plant(String name, int x, int y) {
 		int col = (x-250)/82;
 		int row = (y-90)/100;
 		System.out.println("row: "+row+"col: "+col );
 		if(row>=0 && row<=4 && col>=0 && col<=8) {
 			if(plants_arr[row][col]==null||!plants_arr[row][col].is_alive()) {
-				Plant plant = new Plant("plant", row, col);
+				Plant plant;
+				switch (name){
+					case "pea_shooter": 
+						plant = new PeaShooter("pea_shooter", row, col);
+						break;
+					case "wall_nut": 
+						plant = new WallNut("pea_shooter", row, col);
+						break;
+					default:
+						plant = new PeaShooter("pea_shooter", row, col);
+						break;
+				}
 				plants_arr[row][col]=plant;
 				plants.add(plant);
 			}
