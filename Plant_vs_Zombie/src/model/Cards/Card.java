@@ -10,18 +10,22 @@ import java.awt.event.MouseEvent;
 
 public class Card implements MouseMotionListener, MouseListener{
 	
+	private String name="pea_shooter";
 	private PlantFactory plant_factory;
 	private int initial_x=50, initial_y=50;
 	private int cur_x=50, cur_y=50;
 	private int width =71, height=71;
 	private int offset_x=35, offset_y=35;
 	private boolean draging = false;
-	private String imgsrc="Images\\Plants\\Peashooter1.png";
+	private String imgsrc="Images\\Plants\\Peashooter.gif";
 	
 	public Card(PlantFactory plant_factory) {
 		this.plant_factory=plant_factory;
 	}
 	
+	public String get_name() {
+		return name;
+	}
 	public String get_imgsrc() {
 		return imgsrc;
 	}
@@ -30,11 +34,45 @@ public class Card implements MouseMotionListener, MouseListener{
 		return cur_x;
 	}
 	
+	public void set_cur_x(int x) {
+		this.cur_x=x;
+	}
 	
 	public int get_cur_y() {
 		return cur_y;
 	}
 	
+	public void set_cur_y(int y) {
+		this.cur_y=y;
+	}
+	
+	public int get_initial_x() {
+		return initial_x;
+	}
+	
+	public void set_initial_x(int x) {
+		this.initial_x=x;
+	}
+	
+	public int get_initial_y() {
+		return initial_y;
+	}
+	
+	public void set_initial_y(int y) {
+		this.initial_y=y;
+	}
+	
+	public void set_draging(boolean draging) {
+		this.draging=draging;
+	}
+	
+	public boolean is_draging() {
+		return draging;
+	}
+	
+	public PlantFactory get_plant_factory() {
+		return plant_factory;
+	}
 	
 	public void mousePressed(MouseEvent e) {
 		if(this.contains(e.getX(), e.getY())) {
@@ -51,7 +89,7 @@ public class Card implements MouseMotionListener, MouseListener{
 	}
 	public void mouseReleased(MouseEvent e) {
 		draging = false;
-		plant_factory.place_plant(cur_x, cur_y);
+		plant_factory.place_plant(get_name(),cur_x, cur_y);
 		System.out.println("x:"+this.cur_x+" "+"y:"+this.cur_y);
 		this.cur_x = this.initial_x;
 		this.cur_y = this.initial_y;

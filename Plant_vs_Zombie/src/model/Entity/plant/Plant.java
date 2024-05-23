@@ -38,5 +38,19 @@ public class Plant extends Entity {
 	//植物無死亡動畫
 	public void turn_to_die() {}
 	
+	public int get_cooldown() {
+		return cooldown;
+	}
+	public int get_counter() {
+		return counter;
+	}
+	
+	public void set_counter(int count) {
+		counter = count;
+	}
+	public void add_counter() {
+		counter++;
+	}
+	
 }
 
