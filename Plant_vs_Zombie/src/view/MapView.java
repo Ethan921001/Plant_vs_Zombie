@@ -5,16 +5,15 @@ import java.awt.List;
 import java.awt.image.ImageObserver;
 import java.util.*;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+
+import javax.swing.*;
+import java.awt.image.*;
 
 import model.Cards.Card;
 import model.Entity.*;
 import model.Entity.plant.Plant;
 import model.Entity.zombie.Zombie;
-
+import model.judger.*;
 //繪製地圖
 
 public class MapView extends JFrame{
@@ -23,6 +22,7 @@ public class MapView extends JFrame{
 	private ArrayList<Plant> plants;
 	private ArrayList<Bullet> bullets;
 	private Card card;
+	private Judger judger;
 	public MapView(ArrayList<Zombie> zombies, ArrayList<Plant> plants, ArrayList<Bullet> bullets , Card card) {
 		this.zombies=zombies;
 		this.plants=plants;
@@ -39,6 +39,7 @@ public class MapView extends JFrame{
 		super.paint(this.getGraphics());
 		
 		Image background = new ImageIcon("Images/Backgrounds/background1.png").getImage();
+		
 		this.getGraphics().drawImage(background, 0, 0, null);
 		
 		ArrayList<Entity> entities =new ArrayList<Entity>();
@@ -54,8 +55,21 @@ public class MapView extends JFrame{
 		//draw card
 		Image img = new ImageIcon(card.get_imgsrc()).getImage();
 		this.getGraphics().drawImage(img , card.get_cur_x(), card.get_cur_y(), null);
-		
+		gameover_view();
 	}
 	
-
+	public BufferedImage BlurImage(BufferedImage img) {
+		float[] matrix = {
+	            1/9f, 1/9f, 1/9f,
+	            1/9f, 1/9f, 1/9f,
+	            1/9f, 1/9f, 1/9f
+	    };
+	    BufferedImageOp blur_img = new ConvolveOp(new Kernel(3, 3, matrix));
+	    return blur_img.filter(img, null);
+	}
+	
+	public void gameover_view() {
+		Image gameover = new ImageIcon("Images\\Gameover\\gameover.png").getImage();
+		this.getGraphics().drawImage(gameover, 300, 100, null);
+	}
 }
