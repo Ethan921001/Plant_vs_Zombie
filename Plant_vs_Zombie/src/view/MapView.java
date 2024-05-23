@@ -23,15 +23,26 @@ public class MapView extends JFrame{
 	private ArrayList<Bullet> bullets;
 	private ArrayList<Card> cards;
 	private Judger judger;
+<<<<<<< HEAD
 	public MapView(ArrayList<Zombie> zombies, ArrayList<Plant> plants, ArrayList<Bullet> bullets , ArrayList<Card> cards) {
+=======
+	public MapView(ArrayList<Zombie> zombies, ArrayList<Plant> plants, ArrayList<Bullet> bullets , Card card, Judger judger) {
+>>>>>>> branch 'master' of https://github.com/Ethan921001/Plant_vs_Zombie.git
 		this.zombies=zombies;
 		this.plants=plants;
 		this.bullets=bullets;
 		setSize(1400, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
+<<<<<<< HEAD
 		this.cards = cards;
 		add_mouse_listeners_and_motion_isteners();
+=======
+		this.card = card;
+		this.judger = judger;
+		addMouseListener(card);
+		addMouseMotionListener(card);
+>>>>>>> branch 'master' of https://github.com/Ethan921001/Plant_vs_Zombie.git
 	}
 	
 	public void paint() {
@@ -71,8 +82,10 @@ public class MapView extends JFrame{
 	}
 	
 	public void gameover_view() {
-		Image gameover = new ImageIcon("Images\\Gameover\\gameover.png").getImage();
-		this.getGraphics().drawImage(gameover, 300, 100, null);
+		if(judger.gameover(zombies)) {
+			Image gameover = new ImageIcon("Images\\Gameover\\gameover.png").getImage();
+			this.getGraphics().drawImage(gameover, 300, 100, null);
+		}
 	}
 	
 	public void add_mouse_listeners_and_motion_isteners() {

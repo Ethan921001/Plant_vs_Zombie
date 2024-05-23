@@ -34,10 +34,15 @@ public class GameStage {
 		zombie_factory=new ZombieFactory();
 		plant_factory=new PlantFactory(plants);
 		thread=new Thread();
+<<<<<<< HEAD
 		cards=new ArrayList<Card>();
 		initialize_cards();
 		map_view=new MapView(zombies,plants,bullets,cards);
+=======
+		card=new Card(plant_factory);
+>>>>>>> branch 'master' of https://github.com/Ethan921001/Plant_vs_Zombie.git
 		judger=new Judger();
+		map_view=new MapView(zombies,plants,bullets,card,judger);
 	}
 	
 	//遊戲主程式迴圈
@@ -53,6 +58,7 @@ public class GameStage {
 			judger.clean_dead_entities(zombies,plants,bullets);
 			//更新顯示畫面
 			map_view.paint();
+			map_view.gameover_view();
 			try {
 				thread.sleep(70);
 			} catch (Exception e) {
