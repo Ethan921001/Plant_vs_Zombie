@@ -39,9 +39,10 @@ public class MapView extends JFrame{
 	public void paint() {
 		super.paint(this.getGraphics());
 		
+		boolean over = judger.gameover(zombies);
 		Image background = new ImageIcon("Images/Backgrounds/background1.png").getImage();
-		
-		this.getGraphics().drawImage(background, 0, 0, null);
+		BufferedImage b = BlurImage(toBufferedImage(background), over);
+		this.getGraphics().drawImage(b, 0, 0, null);
 		
 		ArrayList<Entity> entities =new ArrayList<Entity>();
 		entities.addAll(zombies);
@@ -50,27 +51,44 @@ public class MapView extends JFrame{
 		for(int i=0;i<entities.size();i++) {
 			Entity entity = entities.get(i);
 			Image img = new ImageIcon(entity.get_imgsrc()).getImage();
-			this.getGraphics().drawImage(img, entity.get_x(), entity.get_y(), null);
+			BufferedImage blur_img = BlurImage(toBufferedImage(img), over);
+			this.getGraphics().drawImage(blur_img, entity.get_x(), entity.get_y(), null);
 		}
 		
 		//draw card
 		Image img = new ImageIcon(card.get_imgsrc()).getImage();
 		this.getGraphics().drawImage(img , card.get_cur_x(), card.get_cur_y(), null);
-		gameover_view();
 	}
 	
-	public BufferedImage BlurImage(BufferedImage img) {
-		float[] matrix = {
-	            1/9f, 1/9f, 1/9f,
-	            1/9f, 1/9f, 1/9f,
-	            1/9f, 1/9f, 1/9f
-	    };
-	    BufferedImageOp blur_img = new ConvolveOp(new Kernel(3, 3, matrix));
-	    return blur_img.filter(img, null);
+	public BufferedImage BlurImage(BufferedImage img, boolean over) {
+		if(over) {
+			float[] matrix = new float[49];
+	        for (int i = 0; i < 49; i++) {
+	            matrix[i] = 1.0f / 49.0f;
+	        }
+	        BufferedImageOp blur_img = new ConvolveOp(new Kernel(7, 7, matrix));
+		    return blur_img.filter(img, null);
+		}
+	    return img;
 	}
 	
-	public void gameover_view() {
-		if(judger.gameover(zombies)) {
+	private BufferedImage toBufferedImage(Image img) {
+        if (img instanceof BufferedImage) {
+            return (BufferedImage) img;
+        }
+        BufferedImage bimage = new BufferedImage(
+            img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+
+        Graphics2D bGr = bimage.createGraphics();
+        bGr.drawImage(img, 0, 0, null);
+        bGr.dispose();
+
+        return bimage;
+    }
+
+	
+	public void gameover_view(boolean over) {
+		if(over) {
 			Image gameover = new ImageIcon("Images\\Gameover\\gameover.png").getImage();
 			this.getGraphics().drawImage(gameover, 300, 100, null);
 		}

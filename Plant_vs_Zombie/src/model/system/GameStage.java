@@ -49,9 +49,9 @@ public class GameStage {
 			judger.clean_dead_entities(zombies,plants,bullets);
 			//更新顯示畫面
 			map_view.paint();
-			map_view.gameover_view();
+			map_view.gameover_view(judger.gameover(zombies));
 			try {
-				thread.sleep(70);
+				thread.sleep(100);
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
