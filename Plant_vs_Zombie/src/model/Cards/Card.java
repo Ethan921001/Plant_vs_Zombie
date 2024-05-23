@@ -70,6 +70,10 @@ public class Card implements MouseMotionListener, MouseListener{
 		return draging;
 	}
 	
+	public void set_imgsrc(String imgsrc) {
+		this.imgsrc=imgsrc;
+	}
+	
 	public PlantFactory get_plant_factory() {
 		return plant_factory;
 	}
@@ -79,6 +83,10 @@ public class Card implements MouseMotionListener, MouseListener{
 			
 			this.draging = true;
 		}
+	}
+	
+	public void set_name(String name) {
+		this.name=name;
 	}
 	
 	public void mouseDragged(MouseEvent e) {

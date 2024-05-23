@@ -21,18 +21,17 @@ public class MapView extends JFrame{
 	private ArrayList<Zombie> zombies;
 	private ArrayList<Plant> plants;
 	private ArrayList<Bullet> bullets;
-	private Card card;
+	private ArrayList<Card> cards;
 	private Judger judger;
-	public MapView(ArrayList<Zombie> zombies, ArrayList<Plant> plants, ArrayList<Bullet> bullets , Card card) {
+	public MapView(ArrayList<Zombie> zombies, ArrayList<Plant> plants, ArrayList<Bullet> bullets , ArrayList<Card> cards) {
 		this.zombies=zombies;
 		this.plants=plants;
 		this.bullets=bullets;
 		setSize(1400, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
-		this.card = card;
-		addMouseListener(card);
-		addMouseMotionListener(card);
+		this.cards = cards;
+		add_mouse_listeners_and_motion_isteners();
 	}
 	
 	public void paint() {
@@ -53,9 +52,12 @@ public class MapView extends JFrame{
 		}
 		
 		//draw card
-		Image img = new ImageIcon(card.get_imgsrc()).getImage();
-		this.getGraphics().drawImage(img , card.get_cur_x(), card.get_cur_y(), null);
-		gameover_view();
+		for(int i=0;i<cards.size();i++) {
+			Card card = cards.get(i);
+			Image img = new ImageIcon(card.get_imgsrc()).getImage();
+			this.getGraphics().drawImage(img, card.get_cur_x(), card.get_cur_y(), null);
+		}
+		//gameover_view();
 	}
 	
 	public BufferedImage BlurImage(BufferedImage img) {
@@ -72,4 +74,12 @@ public class MapView extends JFrame{
 		Image gameover = new ImageIcon("Images\\Gameover\\gameover.png").getImage();
 		this.getGraphics().drawImage(gameover, 300, 100, null);
 	}
+	
+	public void add_mouse_listeners_and_motion_isteners() {
+		for(Card card:cards) {
+			addMouseListener(card);
+			addMouseMotionListener(card);
+		}
+	}
+	
 }

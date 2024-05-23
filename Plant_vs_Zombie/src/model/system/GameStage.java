@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import view.*;
 import model.*;
 import model.Cards.Card;
+import model.Cards.PeaShooterCard;
+import model.Cards.WallNutCard;
 import model.Entity.*;
 import model.Entity.plant.Plant;
 import model.Entity.zombie.Zombie;
@@ -14,7 +16,7 @@ import model.judger.*;
 //遊戲中所有model將在這裡被調用
 public class GameStage {
 	
-	private Card card;
+	private ArrayList<Card> cards;
 	private ArrayList<Plant> plants;
 	private ArrayList<Zombie> zombies;
 	private ArrayList<Bullet> bullets;
@@ -32,14 +34,16 @@ public class GameStage {
 		zombie_factory=new ZombieFactory();
 		plant_factory=new PlantFactory(plants);
 		thread=new Thread();
-		card=new Card(plant_factory);
-		map_view=new MapView(zombies,plants,bullets,card);
+		cards=new ArrayList<Card>();
+		initialize_cards();
+		map_view=new MapView(zombies,plants,bullets,cards);
 		judger=new Judger();
 	}
 	
 	//遊戲主程式迴圈
 	public void play_game() {
-
+		
+		initialize_cards();
 		while(true){
 			zombie_factory.summon_zombie(this);			
 			judger.plant_shoot(plants, bullets);
@@ -64,6 +68,10 @@ public class GameStage {
 		entities.add(entity);
 	}
 	
+	public void initialize_cards() {
+		cards.add(new PeaShooterCard(plant_factory));
+		cards.add(new WallNutCard(plant_factory));
+	}
 	
 	
 }
