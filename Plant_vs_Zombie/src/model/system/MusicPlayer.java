@@ -8,7 +8,7 @@ public class MusicPlayer{
 	public void  music_play(){
 		
 		try {
-			File file = new File("Audio/game.mp3");
+			File file = new File("Audio/game.wav");
 			AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
 			Clip clip = AudioSystem.getClip();
 			clip.open(audioStream);
