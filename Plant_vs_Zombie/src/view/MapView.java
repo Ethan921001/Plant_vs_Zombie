@@ -33,6 +33,7 @@ public class MapView extends JFrame{
 		setVisible(true);
 		this.cards = cards;
 		add_mouse_listeners_and_motion_isteners();
+		this.judger=judger;
 	}
 	
 	public void paint() {
