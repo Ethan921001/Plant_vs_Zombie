@@ -36,7 +36,6 @@ public class GameStage {
 		thread=new Thread();
 		cards=new ArrayList<Card>();
 		initialize_cards();
-		map_view=new MapView(zombies,plants,bullets,cards);
 		judger=new Judger();
 		map_view=new MapView(zombies,plants,bullets,cards,judger);
 	}
