@@ -91,7 +91,7 @@ public class Card implements MouseMotionListener, MouseListener{
 	
 	public void mouseDragged(MouseEvent e) {
 		if(draging) {
-			this.cur_x = e.getX()-this.offset_x;
+			set_cur_x(e.getX()-this.offset_x);
 			this.cur_y = e.getY()-this.offset_y;
 		}
 	}
