@@ -99,4 +99,14 @@ public class Judger {
 			}
 		}
 	}
+	
+	public boolean gameover(ArrayList<Zombie> zombies) {
+		for (int i=0; i < zombies.size();i++) {
+			Zombie zombie = zombies.get(i);
+			if (zombie.get_x()<=200) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
