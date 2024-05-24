@@ -5,9 +5,7 @@ import javax.swing.JFrame;
 
 import view.*;
 import model.*;
-import model.Cards.Card;
-import model.Cards.PeaShooterCard;
-import model.Cards.WallNutCard;
+import controller.*;
 import model.Entity.*;
 import model.Entity.plant.Plant;
 import model.Entity.zombie.Zombie;
@@ -26,18 +24,21 @@ public class GameStage {
 	private MapView map_view;
 	private Thread thread;
 	private Judger judger;
+	private EconomySystem economySystem;
+	
 	public GameStage() {
 		plants=new ArrayList<Plant>();
 		zombies=new ArrayList<Zombie>();
 		bullets=new ArrayList<Bullet>();
 		entities=new ArrayList<Entity>();	
 		zombie_factory=new ZombieFactory();
-		plant_factory=new PlantFactory(plants);
+		economySystem=new EconomySystem();
+		plant_factory=new PlantFactory(plants,economySystem);
 		thread=new Thread();
 		cards=new ArrayList<Card>();
 		initialize_cards();
 		judger=new Judger();
-		map_view=new MapView(zombies,plants,bullets,cards,judger);
+		map_view=new MapView(zombies,plants,bullets,cards,economySystem);
 	}
 	
 	//遊戲主程式迴圈
@@ -51,9 +52,10 @@ public class GameStage {
 			judger.bullet_hit_zombie(zombies, bullets);
 			judger.zombie_died(zombies);
 			judger.clean_dead_entities(zombies,plants,bullets);
+			economySystem.add_sunshine();
 			//更新顯示畫面
 			map_view.paint();
-			map_view.gameover_view();
+			map_view.gameover_view(judger.gameover(zombies));
 			try {
 				thread.sleep(70);
 			} catch (Exception e) {

@@ -8,9 +8,9 @@ public class Zombie extends Entity{
 	public Zombie(String name, int row, int col) {
 		
 		super( name, row, col);
-		set_bounding_box_width(166);
-		set_bounding_box_height(144);
-		set_y(20+100*row);
+		set_bounding_box_width(91);
+		set_bounding_box_height(129);
+		set_y(50+100*row);
 		set_speed(-2);
 		set_imgsrc("Images/Zombies/zombie.gif");
 		set_health(2);
@@ -39,6 +39,6 @@ public class Zombie extends Entity{
 	}
 	
 	public void turn_to_die(){
-		set_imgsrc("Images/Zombies/zombie_died.gif");
+		set_imgsrc("Images/Zombies/grave.png");
 	}
 }

@@ -59,7 +59,7 @@ public class Judger {
 			if(hit) {
 				zombie.turn_to_attack();				
 			}
-			else {
+			else if(zombie.is_alive()){
 				zombie.turn_to_walk();
 				zombie.move();
 			}

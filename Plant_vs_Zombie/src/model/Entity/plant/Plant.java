@@ -5,6 +5,7 @@ import model.Entity.zombie.Zombie;
 
 public class Plant extends Entity {
 	
+	private int price=100;
 	private int counter =0;
 	private int cooldown=20;
 	
@@ -37,6 +38,15 @@ public class Plant extends Entity {
 	
 	//植物無死亡動畫
 	public void turn_to_die() {}
+	
+	
+	public int get_price() {
+		return price;
+	}
+	
+	public void set_price(int price){
+		this.price=price;
+	}
 	
 	public int get_cooldown() {
 		return cooldown;

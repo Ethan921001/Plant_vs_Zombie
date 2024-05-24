@@ -9,6 +9,8 @@ public class Bullet extends Entity{
 		super (name, row, col);
 		set_health(1);
 		set_speed(10);
+		set_bounding_box_height(34);
+		set_bounding_box_width(34);
 		set_imgsrc("Images/Bullets/bullet.png");
 	}
 	

@@ -1,4 +1,4 @@
-package model.Cards;
+package controller;
 
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;

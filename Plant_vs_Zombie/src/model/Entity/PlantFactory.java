@@ -3,20 +3,24 @@ package model.Entity;
 import java.util.ArrayList;
 
 import model.Entity.plant.*;
+import model.system.EconomySystem;
 
 public class PlantFactory {
 
 	private Plant[][] plants_arr; 
 	private ArrayList<Plant> plants;
 	private ArrayList<Entity> entities;
-	public PlantFactory(ArrayList<Plant> plants) {
+	private EconomySystem economySystem;
+	
+	public PlantFactory(ArrayList<Plant> plants, EconomySystem economySystem) {
 		this.plants_arr = new Plant[5][9];
 		this.plants=plants;
+		this.economySystem=economySystem;
 	}
 	
 	public void place_plant(String name, int x, int y) {
-		int col = (x-250)/82;
-		int row = (y-90)/100;
+		int col = (x-210)/80;
+		int row = (y-50)/100;
 		System.out.println("row: "+row+"col: "+col );
 		if(row>=0 && row<=4 && col>=0 && col<=8) {
 			if(plants_arr[row][col]==null||!plants_arr[row][col].is_alive()) {
@@ -32,8 +36,12 @@ public class PlantFactory {
 						plant = new PeaShooter("pea_shooter", row, col);
 						break;
 				}
-				plants_arr[row][col]=plant;
-				plants.add(plant);
+				if(economySystem.get_sunshine()>=plant.get_price()) {
+					plants_arr[row][col]=plant;
+					plants.add(plant);
+					economySystem.set_sunshine(economySystem.get_sunshine()-plant.get_price());
+				}
+				
 			}
 		}
 	}
