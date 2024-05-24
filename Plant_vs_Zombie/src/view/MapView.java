@@ -44,13 +44,15 @@ public class MapView extends JFrame{
 	
 	public void paint() {
 		
-
+		//若offScreenImage為空，創建新Image
 		if(offScreenImage==null) {
 			offScreenImage=this.createImage(1400,600);
 		}
 		
+		//用於在offScreenImage上繪製新場景
 		Graphics2D gImage=(Graphics2D)offScreenImage.getGraphics();
-
+		
+		//繪製背景
 		Image background = new ImageIcon("Images/Backgrounds/background1.png").getImage();
 		gImage.drawImage(background, 0, 0, null);
 		
@@ -68,6 +70,7 @@ public class MapView extends JFrame{
 			//gImage.drawRect(entity.get_x(), entity.get_y(), entity.get_bounding_box_width(), entity.get_bounding_box_height());
 		}
 		
+		//繪製卡牌面板
 		Image board = new ImageIcon("Images\\Card\\Board.png").getImage();
 		gImage.drawImage(board,0,0,null);
 		
@@ -90,9 +93,8 @@ public class MapView extends JFrame{
 		gImage.drawString(Integer.toString(sunshine), 90, 545);
 		
 		
-		
 		boolean gameover = judger.gameover(zombies);
-		
+		//若沒輸，正常繪製遊戲畫面，否則繪製gameover字樣，並模糊遊戲畫面
 		if(!gameover) {
 			this.getGraphics().drawImage(offScreenImage,0,0,null);
 		}
@@ -105,6 +107,7 @@ public class MapView extends JFrame{
 
 	}
 	
+	//將圖片模糊
 	public BufferedImage BlurImage(BufferedImage img) {
 		float[] matrix = new float[49];
         for (int i = 0; i < 49; i++) {
@@ -114,13 +117,13 @@ public class MapView extends JFrame{
 	    return blur_img.filter(img, null);
 	}
 	
-
+	//繪製gameover字樣
 	public void gameover_view() {
 		Image gameoverView = new ImageIcon("Images\\Gameover\\gameover.png").getImage();
 		this.getGraphics().drawImage(gameoverView, 300, 100, null);
 	}
 	
-	
+	//將img轉為BufferedImage
 	private BufferedImage toBufferedImage(Image img) {
         if (img instanceof BufferedImage) {
             return (BufferedImage) img;
@@ -135,7 +138,7 @@ public class MapView extends JFrame{
         return bimage;
     }
 
-	
+	//將cards內的mouselistener加入Jframe
 	public void add_mouse_listeners_and_motion_isteners() {
 		for(Card card:cards) {
 			addMouseListener(card);
