@@ -38,7 +38,7 @@ public class GameStage {
 		cards=new ArrayList<Card>();
 		initialize_cards();
 		judger=new Judger();
-		map_view=new MapView(zombies,plants,bullets,cards,economySystem);
+		map_view=new MapView(zombies,plants,bullets,cards,economySystem,judger);
 	}
 	
 	//遊戲主程式迴圈
@@ -55,9 +55,8 @@ public class GameStage {
 			economySystem.add_sunshine();
 			//更新顯示畫面
 			map_view.paint();
-			map_view.gameover_view(judger.gameover(zombies));
 			try {
-				thread.sleep(70);
+				thread.sleep(100);
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
