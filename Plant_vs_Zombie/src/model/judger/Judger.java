@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import model.Entity.*;
 import model.Entity.plant.Plant;
 import model.Entity.zombie.Zombie;
+import model.system.EconomySystem;
 
 public class Judger {
 	
@@ -87,6 +88,14 @@ public class Judger {
 			if(plant.shoot()) {
 				Bullet bullet = new Bullet("bullet", plant.get_row(), plant.get_col());
 				bullets.add(bullet);
+			}
+		}
+	}
+	//擁有生產陽光能力的植物生產陽光
+	public void plant_produce_sunshine(ArrayList<Plant> plants, EconomySystem economySystem) {
+		for(Plant plant:plants) {
+			if(plant.produce_sunshine()) {
+				economySystem.add_sunshine();
 			}
 		}
 	}

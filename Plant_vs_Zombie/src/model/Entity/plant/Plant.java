@@ -35,6 +35,10 @@ public class Plant extends Entity {
 	public boolean shoot() {
 		return false;
 	}
+	//默認無法產生陽光
+	public boolean produce_sunshine() {
+		return false;
+	}
 	
 	//植物無死亡動畫
 	public void turn_to_die() {}

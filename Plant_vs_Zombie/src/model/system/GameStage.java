@@ -48,6 +48,7 @@ public class GameStage {
 		while(true){
 			zombie_factory.summon_zombie(this);			
 			judger.plant_shoot(plants, bullets);
+			judger.plant_produce_sunshine(plants, economySystem);
 			judger.zombie_hit_plant(zombies, plants);
 			judger.bullet_hit_zombie(zombies, bullets);
 			judger.zombie_died(zombies);
@@ -73,6 +74,7 @@ public class GameStage {
 	public void initialize_cards() {
 		cards.add(new PeaShooterCard(plant_factory));
 		cards.add(new WallNutCard(plant_factory));
+		cards.add(new SunFlowerCard(plant_factory));
 	}
 	
 	

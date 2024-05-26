@@ -30,7 +30,10 @@ public class PlantFactory {
 						plant = new PeaShooter("pea_shooter", row, col);
 						break;
 					case "wall_nut": 
-						plant = new WallNut("pea_shooter", row, col);
+						plant = new WallNut("wall_nut", row, col);
+						break;
+					case "sun_flower":
+						plant = new SunFlower("sun_flower", row, col);
 						break;
 					default:
 						plant = new PeaShooter("pea_shooter", row, col);
