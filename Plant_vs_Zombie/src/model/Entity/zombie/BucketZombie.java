@@ -19,7 +19,7 @@ public class BucketZombie extends Zombie{
 		}
 		else {
 			set_imgsrc("Images/Zombies/zombie_attack.gif");
-			set_y(50+100*this.get_row());
+			set_y(52+100*this.get_row());
 		}
 	}
 	
@@ -29,7 +29,7 @@ public class BucketZombie extends Zombie{
 		}
 		else {
 			set_imgsrc("Images/Zombies/zombie.gif");
-			set_y(50+100*this.get_row());
+			set_y(52+100*this.get_row());
 		}
 	}
 }
