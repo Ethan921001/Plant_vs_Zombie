@@ -1,49 +1,61 @@
 package Game;
 
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.util.ArrayList;
-import java.util.Random;
-
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import model.system.GameStage;
+import model.system.MusicPlayer;
 
 public class Game {
 	
-	private JFrame frame;
-	
-	public static void main(String[] args) {
-		Game game = new Game();
-		game.frame.setVisible(true);
-	}
-	
-	public Game() {
-		initialize();
-	}
-	
-	public void initialize() {
-		
-		//視窗
-		frame = new JFrame();
-		frame.setBounds(100, 100, 1400, 600);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		
-		try {
-			Icon background = new ImageIcon("Images/Backgrounds/background1.png");					
-			JLabel lb_background = new JLabel();
-			lb_background.setIcon(background);
-			lb_background.setBounds(0,0,background.getIconWidth()-400,background.getIconHeight());
-			frame.getContentPane().add(lb_background);
-		}
-		catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		
-	}
+    public class BackgroundPanel extends JPanel {
+        private Image backgroundImage;
+
+        public BackgroundPanel(Image image) {
+            this.backgroundImage = image;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
+        }
+    }
+
+    public class BackgroundFrame extends JFrame {
+        public BackgroundFrame() {
+            ImageIcon icon = new ImageIcon("Images\\Backgrounds\\str_game_background.png");
+            Image image = icon.getImage();
+
+            BackgroundPanel backgroundPanel = new BackgroundPanel(image);
+            setContentPane(backgroundPanel);
+            setLayout(new BorderLayout());
+
+            JButton button = new JButton("Click Me");
+
+            button.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    try {
+						BackgroundFrame.this.setVisible(false);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                        System.out.println("An error occurred: " + ex.getMessage());
+                    }
+                }
+            });
+
+            add(button, BorderLayout.SOUTH);
+
+            setTitle("Game");
+            setSize(1200, 800);
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            setLocationRelativeTo(null);
+        }
+    }
+
+    public static void main(String[] args) {
+        BackgroundFrame str_Game = new Game().new BackgroundFrame();
+        str_Game.setVisible(true);
+    }
 }
