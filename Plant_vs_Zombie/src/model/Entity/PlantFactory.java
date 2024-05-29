@@ -48,4 +48,15 @@ public class PlantFactory {
 			}
 		}
 	}
+	
+	public void delete_plant(int x, int y) {
+		int col = (x-210)/80;
+		int row = (y-50)/100;
+		if(row>=0 && row<=4 && col>=0 && col<=8) {
+			if(plants_arr[row][col]!=null && plants_arr[row][col].is_alive()) {
+				plants_arr[row][col].set_health(0);
+			}
+		}
+	}
+	
 }

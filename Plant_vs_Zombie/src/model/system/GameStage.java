@@ -14,6 +14,7 @@ import model.judger.*;
 //遊戲中所有model將在這裡被調用
 public class GameStage {
 	
+	
 	private ArrayList<Card> cards;
 	private ArrayList<Plant> plants;
 	private ArrayList<Zombie> zombies;
@@ -25,6 +26,7 @@ public class GameStage {
 	private Thread thread;
 	private Judger judger;
 	private EconomySystem economySystem;
+	private Shovel shovel;
 	
 	public GameStage() {
 		plants=new ArrayList<Plant>();
@@ -38,7 +40,8 @@ public class GameStage {
 		cards=new ArrayList<Card>();
 		initialize_cards();
 		judger=new Judger();
-		map_view=new MapView(zombies,plants,bullets,cards,economySystem,judger);
+		shovel=new Shovel(plant_factory);
+		map_view=new MapView(zombies,plants,bullets,cards,economySystem,judger,shovel);	
 	}
 	
 	//遊戲主程式迴圈
