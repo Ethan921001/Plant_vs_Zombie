@@ -14,7 +14,6 @@ import model.judger.*;
 import Game.Game;
 import Game.stop_frame;
 import Game.Game.BackgroundFrame;
-import controller.stage;
 
 //遊戲中所有model將在這裡被調用
 public class GameStage {
@@ -104,6 +103,7 @@ public class GameStage {
 		cards.add(new PeaShooterCard(plant_factory));
 		cards.add(new WallNutCard(plant_factory));
 		cards.add(new SunFlowerCard(plant_factory));
+		cards.add(new Super_PeaShooterCard(plant_factory));
 	}
 	
 	
