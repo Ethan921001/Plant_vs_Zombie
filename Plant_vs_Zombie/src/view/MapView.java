@@ -10,11 +10,13 @@ import javax.swing.*;
 import java.awt.image.*;
 
 import controller.*;
+import controller.Button;
 import model.Entity.*;
 import model.Entity.plant.*;
 import model.Entity.zombie.*;
 import model.judger.*;
 import model.system.EconomySystem;
+import Game.stop_frame;
 
 //繪製地圖
 
@@ -28,18 +30,22 @@ public class MapView extends JFrame{
 	private Judger judger;
 	private EconomySystem economySystem;
 	private Image offScreenImage;
-
-	public MapView(ArrayList<Zombie> zombies, ArrayList<Plant> plants, ArrayList<Bullet> bullets , ArrayList<Card> cards, EconomySystem ec, Judger judger) {
+    private Shovel shovel;
+	private StopButton stop_btn;
+    
+	public MapView(ArrayList<Zombie> zombies, ArrayList<Plant> plants, ArrayList<Bullet> bullets , ArrayList<Card> cards, EconomySystem ec, Judger judger, Shovel shovel, StopButton stopButton) {
 		this.zombies=zombies;
 		this.plants=plants;
 		this.bullets=bullets;
 		this.cards = cards;
 		this.economySystem=ec;
 		this.judger=judger;
+		this.shovel=shovel;
 		setSize(1400, 600);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setVisible(true);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setVisible(false);
 		add_mouse_listeners_and_motion_isteners();
+		stop_btn = stopButton;
 	}
 	
 	public void paint() {
@@ -82,16 +88,25 @@ public class MapView extends JFrame{
 		}	
 		
 		
+		Image shovel_back = new ImageIcon("Images\\UI\\ShovelBack.png").getImage();
+		gImage.drawImage(shovel_back,130,30,null);
+		//繪製鏟子
+		Image shovel_img = new ImageIcon(shovel.get_imgsrc()).getImage();
+		gImage.drawImage(shovel_img, shovel.get_cur_x(), shovel.get_cur_y(), null);
+		
 		//display sunshine icon
 		Image sun = new ImageIcon("Images/UI/Sun.png").getImage();
-		gImage.drawImage(sun,20,490,null);
+		gImage.drawImage(sun,20,510,null);
 		//display amount of sunshine
 		int sunshine=economySystem.get_sunshine();
 		Font font =new Font("Palatino",Font.BOLD,40);
 		gImage.setFont(font);
 		gImage.setColor(Color.black);
-		gImage.drawString(Integer.toString(sunshine), 90, 545);
+		gImage.drawString(Integer.toString(sunshine), 90, 565);
 		
+	
+		Image stop_btnImage=stop_btn.getImage();
+		gImage.drawImage(stop_btnImage, 1000, 100, null);
 		
 		boolean gameover = judger.gameover(zombies);
 		//若沒輸，正常繪製遊戲畫面，否則繪製gameover字樣，並模糊遊戲畫面
@@ -103,6 +118,8 @@ public class MapView extends JFrame{
 			this.getGraphics().drawImage(blur_img, 0, 0, null);
 			gameover_view();
 		}
+		
+		
 		
 
 	}
@@ -144,6 +161,8 @@ public class MapView extends JFrame{
 			addMouseListener(card);
 			addMouseMotionListener(card);
 		}
+		addMouseListener(shovel);
+		addMouseMotionListener(shovel);
 	}
 	
 }

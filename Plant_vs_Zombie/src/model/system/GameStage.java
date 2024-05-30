@@ -12,10 +12,13 @@ import model.Entity.plant.Plant;
 import model.Entity.zombie.Zombie;
 import model.judger.*;
 import Game.Game;
+import Game.stop_frame;
 import Game.Game.BackgroundFrame;
+import controller.stage;
 
 //遊戲中所有model將在這裡被調用
 public class GameStage {
+	
 	
 	private ArrayList<Card> cards;
 	private ArrayList<Plant> plants;
@@ -29,7 +32,8 @@ public class GameStage {
 	private Judger judger;
 	private EconomySystem economySystem;
 	private BackgroundFrame surface;
-	private int stage = 1;
+	private Shovel shovel;
+	private StopButton stopButton;
 	
 	public GameStage() {
 		plants=new ArrayList<Plant>();
@@ -43,8 +47,11 @@ public class GameStage {
 		cards=new ArrayList<Card>();
 		initialize_cards();
 		judger=new Judger();
-		map_view=new MapView(zombies,plants,bullets,cards,economySystem,judger);
 		surface = new Game().new BackgroundFrame();
+		shovel=new Shovel(plant_factory);
+		stopButton=new StopButton(new Button("Images\\UI\\stop.png", "text", 0, 0, 0));
+		map_view=new MapView(zombies,plants,bullets,cards,economySystem,judger,shovel,stopButton);	
+	
 	}
 	
 	//遊戲主程式迴圈
@@ -52,13 +59,13 @@ public class GameStage {
 		
 		initialize_cards();
 		while(true) {
-			if(stage == 1) {
+			if(stage.stage == 1) {
 				surface.setVisible(true);
-				if(!surface.isVisible()) {
-					stage = 2;
-				}
+				map_view.setVisible(false);
 			}
-			else if(stage == 2) {
+			else if(stage.stage == 2) {
+				map_view.setVisible(true);
+				surface.setVisible(false);
 				while(true){
 					zombie_factory.summon_zombie(this);			
 					judger.plant_shoot(plants, bullets);
@@ -76,6 +83,11 @@ public class GameStage {
 						System.out.println(e.getMessage());
 					}
 				}
+				
+			}
+			else if(stage.stage == 3) {
+				map_view.setVisible(false);
+				surface.setVisible(false);
 				
 			}
 		}

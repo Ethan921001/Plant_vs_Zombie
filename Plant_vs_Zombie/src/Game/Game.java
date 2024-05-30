@@ -1,11 +1,14 @@
 package Game;
 
 import java.awt.*;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.system.GameStage;
 import model.system.MusicPlayer;
+import controller.Button;
+import controller.Start_btn;
 
 public class Game {
 	
@@ -24,28 +27,18 @@ public class Game {
     }
 
     public class BackgroundFrame extends JFrame {
+    	
         public BackgroundFrame() {
             ImageIcon icon = new ImageIcon("Images\\Backgrounds\\str_game_background.png");
             Image image = icon.getImage();
 
             BackgroundPanel backgroundPanel = new BackgroundPanel(image);
             setContentPane(backgroundPanel);
-            setLayout(new BorderLayout());
-
-            JButton button = new JButton("Click Me");
-
-            button.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    try {
-						BackgroundFrame.this.setVisible(false);
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                        System.out.println("An error occurred: " + ex.getMessage());
-                    }
-                }
-            });
-
-            add(button, BorderLayout.SOUTH);
+            setLayout(null);            
+            
+            Start_btn button = new Start_btn(new Button("Images\\Backgrounds\\Button.png","Start Game",360,90,0));
+            add(button);
+            //System.out.println("stage : " + stage);
 
             setTitle("Game");
             setSize(1200, 800);
@@ -55,7 +48,9 @@ public class Game {
     }
 
     public static void main(String[] args) {
-        BackgroundFrame str_Game = new Game().new BackgroundFrame();
-        str_Game.setVisible(true);
+    	SwingUtilities.invokeLater(() -> {
+            BackgroundFrame str_Game = new Game().new BackgroundFrame();
+            str_Game.setVisible(true);
+        });
     }
 }
