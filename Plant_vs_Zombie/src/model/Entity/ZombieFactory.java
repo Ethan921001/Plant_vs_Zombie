@@ -29,7 +29,8 @@ public class ZombieFactory {
 			System.out.println("random row : "+rand_row);
 			int rand_zombie = random.nextInt(0,3);
 			System.out.println("random zombie : "+rand_zombie);
-			Zombie zombie;
+			Zombie zombie = new Zombie("Zombie", rand_row, 9);
+			/*
 			switch (rand_zombie) {
 				case 0 :
 					zombie = new Zombie("Zombie", rand_row, 9);
@@ -42,7 +43,8 @@ public class ZombieFactory {
 					break;
 				default :
 					zombie = new Zombie("Zombie", rand_row, 9);
-			}
+					break;
+			}*/
 			stage.add_entity(zombie);
 			stage.add_zombie(zombie);
 		}	

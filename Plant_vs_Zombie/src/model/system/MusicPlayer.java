@@ -4,22 +4,20 @@ import java.io.IOException;
 
 import javax.sound.sampled.*;
 public class MusicPlayer{
-
+	private Clip clip;
 	public void  music_play(){
 		
 		try {
 			File file = new File("Audio/game.wav");
 			AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
-			Clip clip = AudioSystem.getClip();
+			clip = AudioSystem.getClip();
 			clip.open(audioStream);
 			clip.start();
-		}catch(Exception e){
 			
+		}catch(Exception e){
 			System.out.println(e.getMessage());
 		}
 		
 		
 	}
-	
-	
 }
