@@ -111,6 +111,7 @@ public class GameStage {
 		cards.add(new PeaShooterCard(plant_factory));
 		cards.add(new WallNutCard(plant_factory));
 		cards.add(new SunFlowerCard(plant_factory));
+		//cards.add(new Super_PeaShooterCard(plant_factory));
 	}
 	
 	

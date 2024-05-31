@@ -8,10 +8,26 @@ import model.Entity.*;
 import model.Entity.plant.Plant;
 import model.Entity.zombie.Zombie;
 import model.system.EconomySystem;
+import java.io.File;
+import java.io.IOException;
+import javax.sound.sampled.*;
 
 public class Judger {
 	
 	private ArrayList<Entity> entities;
+	private Clip attackClip;
+	private AudioInputStream audioStream;
+	
+	public Judger() {
+		try {
+			audioStream = AudioSystem.getAudioInputStream(new File("Audio/chompWAV.wav"));
+			attackClip = AudioSystem.getClip();
+			attackClip.open(audioStream);
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+	}
 	
 	public void set_entities(ArrayList<Zombie> zombies, ArrayList<Plant> plants, ArrayList<Bullet> bullets) {
 		entities.clear();
@@ -58,10 +74,23 @@ public class Judger {
 				
 			}
 			if(hit) {
-				zombie.turn_to_attack();				
+				zombie.turn_to_attack();
+				
+				try {
+					if (!attackClip.isRunning()) {
+						attackClip.loop(attackClip.LOOP_CONTINUOUSLY);
+						attackClip.start();
+					}
+				}catch (Exception e) {
+					System.out.println(e.getMessage());
+				} 
 			}
 			else if(zombie.is_alive()){
 				zombie.turn_to_walk();
+			
+				if (attackClip != null && attackClip.isRunning()) {
+					attackClip.stop();
+				}
 				zombie.move();
 			}
 			
@@ -105,6 +134,10 @@ public class Judger {
 			Zombie zombie =zombies.get(i);
 			if(!zombie.is_alive()) {
 				zombie.turn_to_die();
+				
+				if (attackClip != null && attackClip.isRunning()) {
+					attackClip.stop();
+				}
 			}
 		}
 	}
