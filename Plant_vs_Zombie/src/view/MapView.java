@@ -3,6 +3,8 @@ package view;
 import java.awt.*;
 
 import java.awt.List;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.awt.image.ImageObserver;
 import java.util.*;
 
@@ -16,11 +18,12 @@ import model.Entity.plant.*;
 import model.Entity.zombie.*;
 import model.judger.*;
 import model.system.EconomySystem;
+import model.system.MusicPlayer;
 import Game.stop_frame;
 
 //繪製地圖
 
-public class MapView extends JFrame{
+public class MapView extends JFrame implements WindowListener{
 	
 	private ArrayList<Zombie> zombies;
 	private ArrayList<Plant> plants;
@@ -32,6 +35,7 @@ public class MapView extends JFrame{
 	private Image offScreenImage;
     private Shovel shovel;
 	private StopButton stop_btn;
+	private MusicPlayer musicPlayer;
     
 	public MapView(ArrayList<Zombie> zombies, ArrayList<Plant> plants, ArrayList<Bullet> bullets , ArrayList<Card> cards, EconomySystem ec, Judger judger, Shovel shovel, StopButton stopButton) {
 		this.zombies=zombies;
@@ -46,6 +50,8 @@ public class MapView extends JFrame{
 		setVisible(false);
 		add_mouse_listeners_and_motion_isteners();
 		stop_btn = stopButton;
+		musicPlayer = new MusicPlayer();
+		addWindowListener(this);
 	}
 	
 	public void paint() {
@@ -164,5 +170,44 @@ public class MapView extends JFrame{
 		addMouseListener(shovel);
 		addMouseMotionListener(shovel);
 	}
-	
+		
+	@Override
+	public void windowOpened(WindowEvent e) {
+		musicPlayer.play();
+	}
+
+	@Override
+	public void windowClosing(WindowEvent e) {
+		musicPlayer.stop();
+	}
+
+	@Override
+	public void windowClosed(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowIconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowActivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }
