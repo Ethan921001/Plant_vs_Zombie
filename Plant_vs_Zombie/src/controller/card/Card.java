@@ -1,4 +1,4 @@
-package controller;
+package controller.card;
 
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;

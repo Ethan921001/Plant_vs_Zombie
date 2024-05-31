@@ -7,8 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.system.GameStage;
 import model.system.MusicPlayer;
-import controller.Button;
-import controller.Start_btn;
+import controller.button.Button;
+import controller.button.Start_btn;
 
 public class Game {
 	
@@ -39,7 +39,7 @@ public class Game {
             Start_btn button = new Start_btn(new Button("Images\\Backgrounds\\Button.png","Start Game",360,90,0));
             add(button);
             //System.out.println("stage : " + stage);
-
+          
             setTitle("Game");
             setSize(1200, 800);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

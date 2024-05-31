@@ -10,7 +10,7 @@ import javax.swing.*;
 import java.awt.image.*;
 
 import controller.*;
-import controller.Button;
+import controller.card.Card;
 import model.Entity.*;
 import model.Entity.plant.*;
 import model.Entity.zombie.*;
@@ -31,9 +31,9 @@ public class MapView extends JFrame{
 	private EconomySystem economySystem;
 	private Image offScreenImage;
     private Shovel shovel;
-	private StopButton stop_btn;
+
     
-	public MapView(ArrayList<Zombie> zombies, ArrayList<Plant> plants, ArrayList<Bullet> bullets , ArrayList<Card> cards, EconomySystem ec, Judger judger, Shovel shovel, StopButton stopButton) {
+	public MapView(ArrayList<Zombie> zombies, ArrayList<Plant> plants, ArrayList<Bullet> bullets , ArrayList<Card> cards, EconomySystem ec, Judger judger, Shovel shovel) {
 		this.zombies=zombies;
 		this.plants=plants;
 		this.bullets=bullets;
@@ -45,7 +45,6 @@ public class MapView extends JFrame{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setVisible(false);
 		add_mouse_listeners_and_motion_isteners();
-		stop_btn = stopButton;
 	}
 	
 	public void paint() {
@@ -104,9 +103,6 @@ public class MapView extends JFrame{
 		gImage.setColor(Color.black);
 		gImage.drawString(Integer.toString(sunshine), 90, 565);
 		
-	
-		Image stop_btnImage=stop_btn.getImage();
-		gImage.drawImage(stop_btnImage, 1000, 100, null);
 		
 		boolean gameover = judger.gameover(zombies);
 		//若沒輸，正常繪製遊戲畫面，否則繪製gameover字樣，並模糊遊戲畫面

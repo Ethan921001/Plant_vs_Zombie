@@ -7,6 +7,10 @@ import javax.swing.JFrame;
 import view.*;
 import model.*;
 import controller.*;
+import controller.card.Card;
+import controller.card.PeaShooterCard;
+import controller.card.SunFlowerCard;
+import controller.card.WallNutCard;
 import model.Entity.*;
 import model.Entity.plant.Plant;
 import model.Entity.zombie.Zombie;
@@ -14,7 +18,6 @@ import model.judger.*;
 import Game.Game;
 import Game.stop_frame;
 import Game.Game.BackgroundFrame;
-import controller.stage;
 
 //遊戲中所有model將在這裡被調用
 public class GameStage {
@@ -28,12 +31,12 @@ public class GameStage {
 	private ZombieFactory zombie_factory;
 	private PlantFactory plant_factory;
 	private MapView map_view;
+	private MenuView menu_view;
 	private Thread thread;
 	private Judger judger;
 	private EconomySystem economySystem;
 	private BackgroundFrame surface;
 	private Shovel shovel;
-	private StopButton stopButton;
 	
 	public GameStage() {
 		plants=new ArrayList<Plant>();
@@ -47,10 +50,10 @@ public class GameStage {
 		cards=new ArrayList<Card>();
 		initialize_cards();
 		judger=new Judger();
-		surface = new Game().new BackgroundFrame();
 		shovel=new Shovel(plant_factory);
-		stopButton=new StopButton(new Button("Images\\UI\\stop.png", "text", 0, 0, 0));
-		map_view=new MapView(zombies,plants,bullets,cards,economySystem,judger,shovel,stopButton);	
+		map_view=new MapView(zombies,plants,bullets,cards,economySystem,judger,shovel);	
+		menu_view=new MenuView();
+		//map_view.add(new PauseButton());
 	
 	}
 	
@@ -59,13 +62,14 @@ public class GameStage {
 		
 		initialize_cards();
 		while(true) {
-			if(stage.stage == 1) {
-				surface.setVisible(true);
+			if(GameState.state == 1) {
+				menu_view.setVisible(true);
+				//menu_view.paint();
 				map_view.setVisible(false);
 			}
-			else if(stage.stage == 2) {
+			else if(GameState.state == 2) {
 				map_view.setVisible(true);
-				surface.setVisible(false);
+				menu_view.setVisible(false);
 				while(true){
 					zombie_factory.summon_zombie(this);			
 					judger.plant_shoot(plants, bullets);
@@ -85,9 +89,12 @@ public class GameStage {
 				}
 				
 			}
-			else if(stage.stage == 3) {
+			else if(GameState.state == 3) {
 				map_view.setVisible(false);
 				surface.setVisible(false);
+				while(true) {
+					System.out.println("");
+				}
 				
 			}
 		}

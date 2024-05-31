@@ -1,8 +1,7 @@
 package controller;
 
-public class stage {
-	public static int stage = 1;
-	
+public class GameState {
+	public static int state = 1;
 	/*
 	 1 -> menu
 	 2 -> battle

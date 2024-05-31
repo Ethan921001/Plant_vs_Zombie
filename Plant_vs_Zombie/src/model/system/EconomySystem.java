@@ -4,7 +4,7 @@ public class EconomySystem {
 	private int sunshine;
 	private int increasing_rate;
 	public EconomySystem() {
-		sunshine=0;
+		sunshine=100;
 		increasing_rate=1;
 	}
 	

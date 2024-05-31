@@ -8,8 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import Game.Game.BackgroundPanel;
-import controller.Button;
-import controller.Start_btn;
+import controller.button.Button;
+import controller.button.Start_btn;
 
 public class stop_frame extends JFrame{
 	 public class BackgroundPanel extends JPanel {
