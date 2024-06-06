@@ -9,7 +9,7 @@ public class ConeZombie extends Zombie{
 		set_y(40+100*row);
 		set_speed(-2);
 		set_imgsrc("Images/Zombies/coneheadZombie.gif");
-		set_health(3);
+		set_health(10);
 		set_max_died_time(50);
 	}
 	
@@ -24,7 +24,7 @@ public class ConeZombie extends Zombie{
 	}
 	
 	public void turn_to_walk(){
-		if (this.get_health()>=2) {
+		if (this.get_health()>=5) {
 			set_imgsrc("Images/Zombies/coneheadZombie.gif");
 		}
 		else {

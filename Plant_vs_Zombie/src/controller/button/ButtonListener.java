@@ -20,7 +20,12 @@ public class ButtonListener implements ActionListener{
 			break;
 		}
 		case "Pause":{
-			GameState.state=3;
+			GameState.pause=true;
+			break;
+		}
+		case "Continue":{
+			GameState.state=2;
+			GameState.pause=false;
 			break;
 		}
 		default:

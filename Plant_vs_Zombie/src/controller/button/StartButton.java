@@ -14,8 +14,6 @@ public class StartButton extends JButton{
 		addActionListener(new ButtonListener("Start"));
 		setSize(384, 174);
 		setContentAreaFilled(false);
-		
-		
 	}
 	
 	
