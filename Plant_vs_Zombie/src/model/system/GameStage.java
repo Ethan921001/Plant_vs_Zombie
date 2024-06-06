@@ -70,16 +70,17 @@ public class GameStage {
 	public void play_game() {
 		
 		initialize_cards();
-		while(true) {
+		while(!GameState.gameover) {
 			if(GameState.state == 1) {
 				menu_view.setVisible(true);
 				//menu_view.paint();
 				map_view.setVisible(false);
 			}
 			else if(GameState.state == 2) {
+				timer.addTime();
 				map_view.setVisible(true);
 				menu_view.setVisible(false);
-				while(!judger.gameover(zombies)){
+				while(!GameState.gameover){
 					zombie_factory.summon_zombie(this);			
 					judger.plant_shoot(plants, bullets);
 					judger.plant_produce_sunshine(plants, economySystem);
@@ -106,6 +107,7 @@ public class GameStage {
 				
 			}
 		}
+		System.out.println("quit");
 	}
 	
 	public void add_zombie(Zombie zombie) {
