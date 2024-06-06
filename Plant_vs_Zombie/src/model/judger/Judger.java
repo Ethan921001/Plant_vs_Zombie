@@ -85,7 +85,7 @@ public class Judger {
 			if(hit) {
 				zombie.turn_to_attack();
 				attackSound = new MusicPlayer();
-				attackSound.setFile("Audio/chompWAV.wav");
+				attackSound.setFile("Audio/chomp1.wav");
 				attackSound.start();
 				/*
 				if (!attackSound.isplaying()) {
@@ -130,7 +130,7 @@ public class Judger {
 					
 					//new MusicPlayer().start();
 					hitSound=new MusicPlayer();
-					hitSound.setFile("Audio/hitWAV.wav");
+					hitSound.setFile("Audio/hit.wav");
 					hitSound.start();
 					/*
 					if (hit) {
