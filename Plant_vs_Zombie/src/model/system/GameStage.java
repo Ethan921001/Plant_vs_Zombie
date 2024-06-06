@@ -32,18 +32,23 @@ public class GameStage {
 	private PlantFactory plant_factory;
 	private MapView map_view;
 	private MenuView menu_view;
+	
+	private PauseWindow pauseWindow;
 	private Thread thread;
 	private Judger judger;
 	private EconomySystem economySystem;
 	private BackgroundFrame surface;
 	private Shovel shovel;
+	private GameTimer timer;
+	
 	
 	public GameStage() {
 		plants=new ArrayList<Plant>();
 		zombies=new ArrayList<Zombie>();
 		bullets=new ArrayList<Bullet>();
-		entities=new ArrayList<Entity>();	
-		zombie_factory=new ZombieFactory();
+		entities=new ArrayList<Entity>();
+		timer=new GameTimer();
+		zombie_factory=new ZombieFactory(timer);
 		economySystem=new EconomySystem();
 		plant_factory=new PlantFactory(plants,economySystem);
 		thread=new Thread();
@@ -53,6 +58,8 @@ public class GameStage {
 		shovel=new Shovel(plant_factory);
 		map_view=new MapView(zombies,plants,bullets,cards,economySystem,judger,shovel);	
 		menu_view=new MenuView();
+		pauseWindow=new PauseWindow();
+		
 		//map_view.add(new PauseButton());
 	
 	}
@@ -70,7 +77,7 @@ public class GameStage {
 			else if(GameState.state == 2) {
 				map_view.setVisible(true);
 				menu_view.setVisible(false);
-				while(true){
+				while(!judger.gameover(zombies)){
 					zombie_factory.summon_zombie(this);			
 					judger.plant_shoot(plants, bullets);
 					judger.plant_produce_sunshine(plants, economySystem);
@@ -80,20 +87,19 @@ public class GameStage {
 					judger.clean_dead_entities(zombies,plants,bullets);
 					economySystem.add_sunshine();
 					//更新顯示畫面
-					map_view.paint();
+					map_view.paint(map_view.getGraphics());
 					try {
 						thread.sleep(100);
 					} catch (Exception e) {
 						System.out.println(e.getMessage());
 					}
-				}
-				
-			}
-			else if(GameState.state == 3) {
-				map_view.setVisible(false);
-				surface.setVisible(false);
-				while(true) {
-					System.out.println("");
+					
+					while(GameState.pause) {
+						pauseWindow.setVisible(true);
+						System.out.println("");
+					}
+					pauseWindow.setVisible(false);
+					
 				}
 				
 			}
@@ -112,6 +118,25 @@ public class GameStage {
 		cards.add(new WallNutCard(plant_factory));
 		cards.add(new SunFlowerCard(plant_factory));
 		//cards.add(new Super_PeaShooterCard(plant_factory));
+	}
+	
+	public void reset() {
+		plants=new ArrayList<Plant>();
+		zombies=new ArrayList<Zombie>();
+		bullets=new ArrayList<Bullet>();
+		entities=new ArrayList<Entity>();
+		timer=new GameTimer();
+		zombie_factory=new ZombieFactory(timer);
+		economySystem=new EconomySystem();
+		plant_factory=new PlantFactory(plants,economySystem);
+		thread=new Thread();
+		cards=new ArrayList<Card>();
+		initialize_cards();
+		judger=new Judger();
+		shovel=new Shovel(plant_factory);
+		map_view=new MapView(zombies,plants,bullets,cards,economySystem,judger,shovel);	
+		//menu_view=new MenuView();
+		pauseWindow=new PauseWindow();
 	}
 	
 	

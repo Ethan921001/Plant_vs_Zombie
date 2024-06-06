@@ -13,7 +13,7 @@ public class Zombie extends Entity{
 		set_y(50+100*row);
 		set_speed(-2);
 		set_imgsrc("Images/Zombies/zombie.gif");
-		set_health(2);
+		set_health(5);
 		set_max_died_time(50);
 	}
 	

@@ -12,6 +12,7 @@ import javax.swing.*;
 import java.awt.image.*;
 
 import controller.*;
+import controller.button.PauseButton;
 import controller.card.Card;
 import model.Entity.*;
 import model.Entity.plant.*;
@@ -19,7 +20,6 @@ import model.Entity.zombie.*;
 import model.judger.*;
 import model.system.EconomySystem;
 import model.system.MusicPlayer;
-import Game.stop_frame;
 
 //繪製地圖
 
@@ -34,6 +34,7 @@ public class MapView extends JFrame implements WindowListener{
 	private EconomySystem economySystem;
 	private Image offScreenImage;
     private Shovel shovel;
+    private PauseButton pauseButton;
 
 	private MusicPlayer musicPlayer;
     
@@ -45,17 +46,38 @@ public class MapView extends JFrame implements WindowListener{
 		this.economySystem=ec;
 		this.judger=judger;
 		this.shovel=shovel;
+		
+		add_mouse_listeners_and_motion_isteners();
+		
+		musicPlayer = new MusicPlayer();
+		addWindowListener(this);
+		
+		//PauseButton pauseButton =new PauseButton();
+		//pauseButton.setLocation(1100, 100);
+		//add(pauseButton,0);
+		
+		
+		
+		this.pauseButton = new PauseButton();
+		pauseButton.setLocation(1200, 40);
+		add(pauseButton);
+		/*
+		JPanel panel =new JPanel();
+		panel.add(pauseButton,0);
+		setContentPane(panel);
+		*/
+		setLayout(null);
 		setSize(1400, 600);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setVisible(false);
-		add_mouse_listeners_and_motion_isteners();
-		musicPlayer = new MusicPlayer();
-		addWindowListener(this);
-
+		
+		
+		
 	}
 	
-	public void paint() {
+	public void paint(Graphics g) {
 		
+		//super.paint(g);
 		//若offScreenImage為空，創建新Image
 		if(offScreenImage==null) {
 			offScreenImage=this.createImage(1400,600);
@@ -109,8 +131,14 @@ public class MapView extends JFrame implements WindowListener{
 		gImage.setFont(font);
 		gImage.setColor(Color.black);
 		gImage.drawString(Integer.toString(sunshine), 90, 565);
-		
-		
+		/*
+		try {
+			this.pauseButton.paint(gImage);
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		*/
 		boolean gameover = judger.gameover(zombies);
 		//若沒輸，正常繪製遊戲畫面，否則繪製gameover字樣，並模糊遊戲畫面
 		if(!gameover) {
@@ -206,5 +234,8 @@ public class MapView extends JFrame implements WindowListener{
 	public void windowDeactivated(WindowEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void paintComponent(Graphics g) {
 	}
 }
