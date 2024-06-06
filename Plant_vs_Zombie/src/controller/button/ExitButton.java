@@ -7,7 +7,7 @@ public class ExitButton extends JButton{
 	
 	public ExitButton() {
 		super("");
-		setIcon(new ImageIcon("Images\\UI\\ContinueButton.png"));
+		setIcon(new ImageIcon("Images\\UI\\ExitButton.png"));
 		addActionListener(new ButtonListener("Gameover"));
 		setSize(113, 41);
 		setContentAreaFilled(false);
