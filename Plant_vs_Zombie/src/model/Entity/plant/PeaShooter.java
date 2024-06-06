@@ -25,6 +25,10 @@ public class PeaShooter extends Plant{
 		}
 	}
 	
+	public void setCoolDown(int cooldown) {
+		this.cooldown=cooldown;
+	}
+	
 	
 	
 }
