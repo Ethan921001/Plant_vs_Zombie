@@ -67,11 +67,17 @@ public class PlantFactory {
 				Plant plant = plants_arr[row][col];
 				if(plant.get_name()=="pea_shooter") {
 					plant.set_health(0);
-					Plant new_plant=new WallNut("wall_nut",row,col);
+					Plant new_plant=new GatlingPea("GatlingPea",row,col);
 					plants_arr[row][col]=new_plant;
 					plants.add(new_plant);
 				}
 				
+				if(plant.get_name()=="wall_nut") {
+					plant.set_health(0);
+					Plant new_plant=new TallNut("TallNut",row,col);
+					plants_arr[row][col]=new_plant;
+					plants.add(new_plant);
+				}
 				
 			}
 		}
