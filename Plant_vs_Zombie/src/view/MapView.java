@@ -171,6 +171,7 @@ public class MapView extends JFrame implements WindowListener{
 	@Override
 	public void windowOpened(WindowEvent e) {
 		musicPlayer.play();
+		musicPlayer.loop();
 	}
 
 	@Override
