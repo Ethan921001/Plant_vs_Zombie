@@ -32,12 +32,14 @@ public class MapView extends JFrame implements WindowListener{
 	private ArrayList<Card> cards;
 	private Judger judger;
 	private EconomySystem economySystem;
+	private Image ScreenImage;
 	private Image offScreenImage;
     private Shovel shovel;
     private Fertilizer fertilizer;
     private PauseButton pauseButton;
-
 	private MusicPlayer musicPlayer;
+	private JPanel panel;
+	private JLabel label;
     
 	public MapView(ArrayList<Zombie> zombies, ArrayList<Plant> plants, ArrayList<Bullet> bullets , ArrayList<Card> cards, EconomySystem ec, Judger judger, Shovel shovel, Fertilizer fertilizer) {
 		this.zombies=zombies;
@@ -59,16 +61,29 @@ public class MapView extends JFrame implements WindowListener{
 		//pauseButton.setLocation(1100, 100);
 		//add(pauseButton,0);
 		
+///	
+		panel=new JPanel();
+		
+		label=new JLabel();
+		label.setBounds(0, 0, 1400, 600);
+		panel.add(label,-1);
 		
 		
 		this.pauseButton = new PauseButton();
 		pauseButton.setLocation(1200, 40);
-		add(pauseButton);
+		//add(pauseButton);
+		panel.add(pauseButton,0);
+		
+///		
+		
+	
+		
 		/*
 		JPanel panel =new JPanel();
 		panel.add(pauseButton,0);
 		setContentPane(panel);
 		*/
+		setContentPane(panel);
 		setLayout(null);
 		setSize(1400, 600);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -84,6 +99,7 @@ public class MapView extends JFrame implements WindowListener{
 		//若offScreenImage為空，創建新Image
 		if(offScreenImage==null) {
 			offScreenImage=this.createImage(1400,600);
+			label.setIcon(new ImageIcon(offScreenImage));
 		}
 		
 		//用於在offScreenImage上繪製新場景
@@ -145,18 +161,21 @@ public class MapView extends JFrame implements WindowListener{
 			System.out.println(e.getMessage());
 		}
 		*/
+		
 		boolean gameover = judger.gameover(zombies);
 		//若沒輸，正常繪製遊戲畫面，否則繪製gameover字樣，並模糊遊戲畫面
 		if(!gameover) {
-			this.getGraphics().drawImage(offScreenImage,0,0,null);
+			//this.getGraphics().drawImage(offScreenImage,0,0,null);
+			//label.getGraphics().drawImage(offScreenImage,0,0,null);
+			label.setIcon(new ImageIcon(offScreenImage));
 		}
 		else {
 			BufferedImage blur_img=BlurImage(toBufferedImage(offScreenImage));
-			this.getGraphics().drawImage(blur_img, 0, 0, null);
+			//label.getGraphics().drawImage(blur_img, 0, 0, null);
 			gameover_view();
 		}
 		
-		
+		//this.paintComponent(gImage);
 		
 
 	}

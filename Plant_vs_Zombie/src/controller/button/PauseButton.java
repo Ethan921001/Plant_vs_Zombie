@@ -19,10 +19,11 @@ public class PauseButton extends JButton{
 		setIcon(new ImageIcon("Images\\UI\\Button.png"));
 		addActionListener(new ButtonListener("Pause"));
 		setSize(113, 41);
-		setContentAreaFilled(false);
+		//setContentAreaFilled(false);
 	}
 	
 	public void paint(Graphics g) {
+		super.paint(g);
 		Image img = new ImageIcon("Images/UI/Button.png").getImage();
 		g.drawImage(img ,1250,40,null);
 	}
