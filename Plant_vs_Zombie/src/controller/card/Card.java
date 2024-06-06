@@ -15,7 +15,7 @@ public class Card implements MouseMotionListener, MouseListener{
 	private int initial_x=50, initial_y=50;
 	private int cur_x=50, cur_y=50;
 	private int width =71, height=71;
-	private int offset_x=35, offset_y=35;
+	private int offset_x=35, offset_y=70;
 	private boolean draging = false;
 	private String imgsrc="Images\\Plants\\Peashooter.gif";
 	
@@ -113,6 +113,6 @@ public class Card implements MouseMotionListener, MouseListener{
 	public void mouseMoved(MouseEvent e) {}
 	
 	public boolean contains(int x, int y) {
-		return (x>=this.cur_x && x<=this.cur_x+this.width && y>=this.cur_y && y<=this.cur_y+this.height);
+		return (x>=this.cur_x && x<=this.cur_x+this.width && y>=this.cur_y+30 && y<=this.cur_y+this.height+60);
 	}
 }
