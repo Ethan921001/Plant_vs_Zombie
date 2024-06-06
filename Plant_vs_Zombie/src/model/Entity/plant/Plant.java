@@ -55,6 +55,11 @@ public class Plant extends Entity {
 	public int get_cooldown() {
 		return cooldown;
 	}
+	
+	public void set_cooldown(int cooldown) {
+		this.cooldown = cooldown;
+	}
+	
 	public int get_counter() {
 		return counter;
 	}
