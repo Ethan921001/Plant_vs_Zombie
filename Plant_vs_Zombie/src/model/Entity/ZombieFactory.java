@@ -29,6 +29,7 @@ public class ZombieFactory {
 			System.out.println("random row : "+rand_row);
 			int rand_zombie = random.nextInt(0,timer.getTime());
 			System.out.println("random zombie : "+rand_zombie);
+			
 			Zombie zombie = new Zombie("Zombie", rand_row, 9);
 			
 			System.out.println("Random:"+rand_row);
@@ -41,6 +42,7 @@ public class ZombieFactory {
 			}
 			else{
 				zombie = new BucketZombie("BucketZombie", rand_row, 9);
+
 			}
 			stage.add_entity(zombie);
 			stage.add_zombie(zombie);

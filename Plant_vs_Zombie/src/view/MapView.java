@@ -52,6 +52,7 @@ public class MapView extends JFrame implements WindowListener{
 		add_mouse_listeners_and_motion_isteners();
 		
 		musicPlayer = new MusicPlayer();
+		musicPlayer.setFile("Audio/game.wav");
 		addWindowListener(this);
 		
 		//PauseButton pauseButton =new PauseButton();
@@ -206,6 +207,7 @@ public class MapView extends JFrame implements WindowListener{
 	@Override
 	public void windowOpened(WindowEvent e) {
 		musicPlayer.play();
+		musicPlayer.loop();
 	}
 
 	@Override
