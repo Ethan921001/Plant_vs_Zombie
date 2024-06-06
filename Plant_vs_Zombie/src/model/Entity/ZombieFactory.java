@@ -22,7 +22,6 @@ public class ZombieFactory {
 	
 	public void summon_zombie(GameStage stage) {
 		counter++;
-		timer.addTime();
 		if(counter%50==0){
 			Random random = new Random();
 			int rand_row = random.nextInt(0, 5);

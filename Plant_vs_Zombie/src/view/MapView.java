@@ -231,6 +231,7 @@ public class MapView extends JFrame implements WindowListener{
 
 	@Override
 	public void windowClosing(WindowEvent e) {
+		GameState.gameover=true;
 		musicPlayer.stop();
 	}
 
