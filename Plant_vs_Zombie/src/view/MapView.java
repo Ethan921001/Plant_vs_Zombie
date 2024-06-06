@@ -34,11 +34,12 @@ public class MapView extends JFrame implements WindowListener{
 	private EconomySystem economySystem;
 	private Image offScreenImage;
     private Shovel shovel;
+    private Fertilizer fertilizer;
     private PauseButton pauseButton;
 
 	private MusicPlayer musicPlayer;
     
-	public MapView(ArrayList<Zombie> zombies, ArrayList<Plant> plants, ArrayList<Bullet> bullets , ArrayList<Card> cards, EconomySystem ec, Judger judger, Shovel shovel) {
+	public MapView(ArrayList<Zombie> zombies, ArrayList<Plant> plants, ArrayList<Bullet> bullets , ArrayList<Card> cards, EconomySystem ec, Judger judger, Shovel shovel, Fertilizer fertilizer) {
 		this.zombies=zombies;
 		this.plants=plants;
 		this.bullets=bullets;
@@ -46,6 +47,7 @@ public class MapView extends JFrame implements WindowListener{
 		this.economySystem=ec;
 		this.judger=judger;
 		this.shovel=shovel;
+		this.fertilizer = fertilizer;
 		
 		add_mouse_listeners_and_motion_isteners();
 		
@@ -121,6 +123,9 @@ public class MapView extends JFrame implements WindowListener{
 		//繪製鏟子
 		Image shovel_img = new ImageIcon(shovel.get_imgsrc()).getImage();
 		gImage.drawImage(shovel_img, shovel.get_cur_x(), shovel.get_cur_y(), null);
+		//繪製肥料
+		Image fertilizer_img = new ImageIcon(fertilizer.get_imgsrc()).getImage();
+		gImage.drawImage(fertilizer_img, fertilizer.get_cur_x(), fertilizer.get_cur_y(), null);
 		
 		//display sunshine icon
 		Image sun = new ImageIcon("Images/UI/Sun.png").getImage();
@@ -194,6 +199,8 @@ public class MapView extends JFrame implements WindowListener{
 		}
 		addMouseListener(shovel);
 		addMouseMotionListener(shovel);
+		addMouseListener(fertilizer);
+		addMouseMotionListener(fertilizer);
 	}
 		
 	@Override

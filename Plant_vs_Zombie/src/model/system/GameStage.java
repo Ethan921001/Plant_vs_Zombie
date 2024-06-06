@@ -39,6 +39,7 @@ public class GameStage {
 	private EconomySystem economySystem;
 	private BackgroundFrame surface;
 	private Shovel shovel;
+	private Fertilizer fertilizer;
 	private GameTimer timer;
 	
 	
@@ -56,7 +57,8 @@ public class GameStage {
 		initialize_cards();
 		judger=new Judger();
 		shovel=new Shovel(plant_factory);
-		map_view=new MapView(zombies,plants,bullets,cards,economySystem,judger,shovel);	
+		fertilizer = new Fertilizer(plant_factory);
+		map_view=new MapView(zombies,plants,bullets,cards,economySystem,judger,shovel,fertilizer);	
 		menu_view=new MenuView();
 		pauseWindow=new PauseWindow();
 		
@@ -134,7 +136,8 @@ public class GameStage {
 		initialize_cards();
 		judger=new Judger();
 		shovel=new Shovel(plant_factory);
-		map_view=new MapView(zombies,plants,bullets,cards,economySystem,judger,shovel);	
+		fertilizer = new Fertilizer(plant_factory);
+		map_view=new MapView(zombies,plants,bullets,cards,economySystem,judger,shovel,fertilizer);	
 		//menu_view=new MenuView();
 		pauseWindow=new PauseWindow();
 	}

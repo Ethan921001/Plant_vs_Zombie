@@ -59,4 +59,22 @@ public class PlantFactory {
 		}
 	}
 	
+	public void upgrade_plant(int x, int y) {
+		int col = (x-210)/80;
+		int row = (y-50)/100;
+		if(row>=0 && row<=4 && col>=0 && col<=8) {
+			if(plants_arr[row][col]!=null && plants_arr[row][col].is_alive()) {
+				Plant plant = plants_arr[row][col];
+				if(plant.get_name()=="pea_shooter") {
+					plant.set_health(0);
+					Plant new_plant=new WallNut("wall_nut",row,col);
+					plants_arr[row][col]=new_plant;
+					plants.add(new_plant);
+				}
+				
+				
+			}
+		}
+	}
+	
 }
