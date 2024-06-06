@@ -63,7 +63,7 @@ public class MenuView extends JFrame implements ComponentListener{
 	
 	@Override
 	public void componentShown(ComponentEvent e) {
-		menuMusicPlayer.play();
+		menuMusicPlayer.start();
 		menuMusicPlayer.loop();
 		
 	}
@@ -71,7 +71,7 @@ public class MenuView extends JFrame implements ComponentListener{
 	@Override
 	public void componentHidden(ComponentEvent e) {
 		// TODO Auto-generated method stub
-		menuMusicPlayer.stop();
+		menuMusicPlayer.musicStop();
 	}
 
 	@Override

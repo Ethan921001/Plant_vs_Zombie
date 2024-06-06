@@ -8,6 +8,8 @@ import model.Entity.*;
 import model.Entity.plant.Plant;
 import model.Entity.zombie.Zombie;
 import model.system.EconomySystem;
+import model.system.MusicPlayer;
+
 import java.io.File;
 import java.io.IOException;
 import javax.sound.sampled.*;
@@ -15,17 +17,24 @@ import javax.sound.sampled.*;
 public class Judger {
 	
 	private ArrayList<Entity> entities;
-	private Clip attackClip;
-	private AudioInputStream audioStream;
+	//private Clip attackClip,shootClip;
+	private MusicPlayer attackSound,hitSound;
+	//private AudioInputStream audioStream;
 	
 	public Judger() {
+		//attackSound = new MusicPlayer();
+		//attackSound.setFile("Audio/chompWAV.wav");
+		//hitSound = new MusicPlayer();
+		//hitSound.setFile("Audio/hitWAV.wav");
+		
+		/*
 		try {
 			audioStream = AudioSystem.getAudioInputStream(new File("Audio/chompWAV.wav"));
 			attackClip = AudioSystem.getClip();
 			attackClip.open(audioStream);
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
-		}
+		}*/
 		
 	}
 	
@@ -75,7 +84,16 @@ public class Judger {
 			}
 			if(hit) {
 				zombie.turn_to_attack();
-				
+				attackSound = new MusicPlayer();
+				attackSound.setFile("Audio/chompWAV.wav");
+				attackSound.start();
+				/*
+				if (!attackSound.isplaying()) {
+					attackSound.start();
+					//attackSound.loop();
+				}
+				*/
+				/*
 				try {
 					if (!attackClip.isRunning()) {
 						attackClip.loop(attackClip.LOOP_CONTINUOUSLY);
@@ -83,14 +101,19 @@ public class Judger {
 					}
 				}catch (Exception e) {
 					System.out.println(e.getMessage());
-				} 
+				} */
 			}
 			else if(zombie.is_alive()){
 				zombie.turn_to_walk();
-			
+				/*
+				if (attackSound.isplaying()) {
+					attackSound.musicStop();
+				}
+				*/
+				/*
 				if (attackClip != null && attackClip.isRunning()) {
 					attackClip.stop();
-				}
+				}*/
 				zombie.move();
 			}
 			
@@ -104,9 +127,29 @@ public class Judger {
 			for(int j=0;j<zombies.size();j++) {
 				Zombie zombie=zombies.get(j);
 				if(bullet.bullet_hit(zombie) && zombie.is_alive()) {
+					
+					//new MusicPlayer().start();
+					hitSound=new MusicPlayer();
+					hitSound.setFile("Audio/hitWAV.wav");
+					hitSound.start();
+					/*
+					if (hit) {
+						//hitSound.play();
+						
+					}
+					if (hitSound.isAlive()) {
+						System.out.println("is alive");
+					}
+					else {
+						System.out.println("not alive");
+					}*/
+					//hitSound.play();
 					bullet.set_health(bullet.get_health()-1);
 					zombie.set_health(zombie.get_health()-1);
-				}
+				}/*
+				else if (hitSound.isplaying()){
+					hitSound.stop();
+				}*/
 					
 			}
 		}
@@ -134,10 +177,15 @@ public class Judger {
 			Zombie zombie =zombies.get(i);
 			if(!zombie.is_alive()) {
 				zombie.turn_to_die();
-				
+				/*
+				if (attackSound.isplaying()) {
+					attackSound.musicStop();
+				}
+				*/
+				/*
 				if (attackClip != null && attackClip.isRunning()) {
 					attackClip.stop();
-				}
+				}*/
 			}
 		}
 	}

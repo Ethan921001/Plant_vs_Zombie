@@ -4,22 +4,24 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.sound.sampled.*;
-public class MusicPlayer{
+public class MusicPlayer extends Thread{
 	private Clip clip;
-	
+	private float previousVolume = 1.0f, currentVolume = 1.0f;
+	private FloatControl fc;
 	public void setFile(String musicFile) {
 		try {
 			File file = new File(musicFile);
 			AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
 			clip = AudioSystem.getClip();
 			clip.open(audioStream);
+			fc = (FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
 		
 	}
 	
-	public void play(){
+	public void run(){
 		clip.start();
 		/*
 		try {
@@ -33,7 +35,7 @@ public class MusicPlayer{
 		}*/
 	}
 	
-	public void stop() {
+	public void musicStop() {
 		if (clip != null && clip.isRunning()) {
 			clip.stop();
 		}
@@ -42,4 +44,27 @@ public class MusicPlayer{
 	public void loop() {
 		clip.loop(Clip.LOOP_CONTINUOUSLY);
 	}
+	
+	public void loop2(int value) {
+		clip.loop(value);
+	}
+	
+	public boolean isplaying() {
+		if (clip.isRunning()) {
+			return true;
+		}
+		else return false;
+	}
+	
+	public boolean isNull() {
+		if (clip == null) {
+			return true;
+		}
+		else return false;
+	}
+	/*
+	public void volumeUp() {
+		//currentVolume = 6.0f;
+		fc.setValue(6.0f);
+	}*/
 }

@@ -199,13 +199,13 @@ public class MapView extends JFrame implements WindowListener{
 		
 	@Override
 	public void windowOpened(WindowEvent e) {
-		musicPlayer.play();
-		musicPlayer.loop();
+		musicPlayer.start();
+		//musicPlayer.loop();
 	}
 
 	@Override
 	public void windowClosing(WindowEvent e) {
-		musicPlayer.stop();
+		musicPlayer.musicStop();
 	}
 
 	@Override
