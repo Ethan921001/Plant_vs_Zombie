@@ -10,6 +10,6 @@ public class test3 {
 		GameStage stage = new GameStage();
 		stage.reset();
 		stage.play_game();
-		
+		System.exit(0);
 	}
 }

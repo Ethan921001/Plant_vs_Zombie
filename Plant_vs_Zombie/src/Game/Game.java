@@ -7,8 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.system.GameStage;
 import model.system.MusicPlayer;
-import controller.button.Button;
-import controller.button.Start_btn;
+import controller.button.*;
 
 public class Game {
 	
@@ -36,7 +35,7 @@ public class Game {
             setContentPane(backgroundPanel);
             setLayout(null);            
             
-            Start_btn button = new Start_btn(new Button("Images\\Backgrounds\\Button.png","Start Game",360,90,0));
+            StartButton button = new StartButton();
             add(button);
             //System.out.println("stage : " + stage);
           

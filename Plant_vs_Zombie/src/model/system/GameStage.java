@@ -39,6 +39,7 @@ public class GameStage {
 	private EconomySystem economySystem;
 	private BackgroundFrame surface;
 	private Shovel shovel;
+	private Fertilizer fertilizer;
 	private GameTimer timer;
 	
 	
@@ -56,7 +57,8 @@ public class GameStage {
 		initialize_cards();
 		judger=new Judger();
 		shovel=new Shovel(plant_factory);
-		map_view=new MapView(zombies,plants,bullets,cards,economySystem,judger,shovel);	
+		fertilizer = new Fertilizer(plant_factory);
+		map_view=new MapView(zombies,plants,bullets,cards,economySystem,judger,shovel,fertilizer);	
 		menu_view=new MenuView();
 		pauseWindow=new PauseWindow();
 		
@@ -68,16 +70,17 @@ public class GameStage {
 	public void play_game() {
 		
 		initialize_cards();
-		while(true) {
+		while(!GameState.gameover) {
 			if(GameState.state == 1) {
 				menu_view.setVisible(true);
 				//menu_view.paint();
 				map_view.setVisible(false);
 			}
 			else if(GameState.state == 2) {
+				timer.addTime();
 				map_view.setVisible(true);
 				menu_view.setVisible(false);
-				while(!judger.gameover(zombies)){
+				while(!GameState.gameover){
 					zombie_factory.summon_zombie(this);			
 					judger.plant_shoot(plants, bullets);
 					judger.plant_produce_sunshine(plants, economySystem);
@@ -104,6 +107,7 @@ public class GameStage {
 				
 			}
 		}
+		System.out.println("quit");
 	}
 	
 	public void add_zombie(Zombie zombie) {
@@ -134,7 +138,8 @@ public class GameStage {
 		initialize_cards();
 		judger=new Judger();
 		shovel=new Shovel(plant_factory);
-		map_view=new MapView(zombies,plants,bullets,cards,economySystem,judger,shovel);	
+		fertilizer = new Fertilizer(plant_factory);
+		map_view=new MapView(zombies,plants,bullets,cards,economySystem,judger,shovel,fertilizer);	
 		//menu_view=new MenuView();
 		pauseWindow=new PauseWindow();
 	}

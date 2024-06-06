@@ -3,6 +3,7 @@ package view;
 import javax.swing.JFrame;
 
 import controller.button.ContinueButton;
+import controller.button.ExitButton;
 
 public class PauseWindow extends JFrame{
 	
@@ -11,8 +12,12 @@ public class PauseWindow extends JFrame{
 		setVisible(false);
 		
 		ContinueButton continueButton =new ContinueButton();
-		continueButton.setLocation(100, 100);
+		continueButton.setLocation(85, 70);
 		add(continueButton);
+		
+		ExitButton exitButton = new ExitButton();
+		exitButton.setLocation(85, 140);
+		add(exitButton);
 		
 		setLayout(null);
 	}

@@ -1,16 +1,15 @@
 package model.Entity.plant;
 
-public class PeaShooter extends Plant{
+public class GatlingPea extends PeaShooter{
 	
-	private int counter =0;
-	private int cooldown=20;
 	
-	public PeaShooter(String name, int row, int col) {
+	public GatlingPea(String name, int row, int col) {
 		super(name, row, col);
 		set_bounding_box_height(71);
 		set_bounding_box_width(71);
 		set_speed(0);
-		set_imgsrc("Images/Plants/peaShooter.gif");
+		set_cooldown(10);
+		set_imgsrc("Images\\Plants\\GatlingPea.gif");
 	}
 	
 	@Override
@@ -24,11 +23,4 @@ public class PeaShooter extends Plant{
 			return true;
 		}
 	}
-	
-	public void setCoolDown(int cooldown) {
-		this.cooldown=cooldown;
-	}
-	
-	
-	
 }

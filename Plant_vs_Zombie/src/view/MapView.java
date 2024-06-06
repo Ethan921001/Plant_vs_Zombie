@@ -32,13 +32,16 @@ public class MapView extends JFrame implements WindowListener{
 	private ArrayList<Card> cards;
 	private Judger judger;
 	private EconomySystem economySystem;
+	private Image ScreenImage;
 	private Image offScreenImage;
     private Shovel shovel;
+    private Fertilizer fertilizer;
     private PauseButton pauseButton;
-
 	private MusicPlayer musicPlayer;
+	private JPanel panel;
+	private JLabel label;
     
-	public MapView(ArrayList<Zombie> zombies, ArrayList<Plant> plants, ArrayList<Bullet> bullets , ArrayList<Card> cards, EconomySystem ec, Judger judger, Shovel shovel) {
+	public MapView(ArrayList<Zombie> zombies, ArrayList<Plant> plants, ArrayList<Bullet> bullets , ArrayList<Card> cards, EconomySystem ec, Judger judger, Shovel shovel, Fertilizer fertilizer) {
 		this.zombies=zombies;
 		this.plants=plants;
 		this.bullets=bullets;
@@ -46,6 +49,7 @@ public class MapView extends JFrame implements WindowListener{
 		this.economySystem=ec;
 		this.judger=judger;
 		this.shovel=shovel;
+		this.fertilizer = fertilizer;
 		
 		add_mouse_listeners_and_motion_isteners();
 		
@@ -57,18 +61,32 @@ public class MapView extends JFrame implements WindowListener{
 		//pauseButton.setLocation(1100, 100);
 		//add(pauseButton,0);
 		
+///	
+		panel=new JPanel();
+		panel.setBounds(0, 0, 1400, 550);
+		
+		label=new JLabel();
+		label.setBounds(0, 0, 1400, 600);
+		panel.add(label,-1);
 		
 		
 		this.pauseButton = new PauseButton();
 		pauseButton.setLocation(1200, 40);
-		add(pauseButton);
+		//add(pauseButton);
+		panel.add(pauseButton,0);
+		
+///		
+		
+	
+		
 		/*
 		JPanel panel =new JPanel();
 		panel.add(pauseButton,0);
 		setContentPane(panel);
 		*/
+		setContentPane(panel);
 		setLayout(null);
-		setSize(1400, 600);
+		setSize(1400, 650);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setVisible(false);
 		
@@ -82,6 +100,7 @@ public class MapView extends JFrame implements WindowListener{
 		//若offScreenImage為空，創建新Image
 		if(offScreenImage==null) {
 			offScreenImage=this.createImage(1400,600);
+			label.setIcon(new ImageIcon(offScreenImage));
 		}
 		
 		//用於在offScreenImage上繪製新場景
@@ -122,6 +141,9 @@ public class MapView extends JFrame implements WindowListener{
 		//繪製鏟子
 		Image shovel_img = new ImageIcon(shovel.get_imgsrc()).getImage();
 		gImage.drawImage(shovel_img, shovel.get_cur_x(), shovel.get_cur_y(), null);
+		//繪製肥料
+		Image fertilizer_img = new ImageIcon(fertilizer.get_imgsrc()).getImage();
+		gImage.drawImage(fertilizer_img, fertilizer.get_cur_x(), fertilizer.get_cur_y(), null);
 		
 		//display sunshine icon
 		Image sun = new ImageIcon("Images/UI/Sun.png").getImage();
@@ -140,18 +162,21 @@ public class MapView extends JFrame implements WindowListener{
 			System.out.println(e.getMessage());
 		}
 		*/
+		
 		boolean gameover = judger.gameover(zombies);
 		//若沒輸，正常繪製遊戲畫面，否則繪製gameover字樣，並模糊遊戲畫面
 		if(!gameover) {
-			this.getGraphics().drawImage(offScreenImage,0,0,null);
+			//this.getGraphics().drawImage(offScreenImage,0,0,null);
+			//label.getGraphics().drawImage(offScreenImage,0,0,null);
+			label.setIcon(new ImageIcon(offScreenImage));
 		}
 		else {
 			BufferedImage blur_img=BlurImage(toBufferedImage(offScreenImage));
-			this.getGraphics().drawImage(blur_img, 0, 0, null);
+			//label.getGraphics().drawImage(blur_img, 0, 0, null);
 			gameover_view();
 		}
 		
-		
+		//this.paintComponent(gImage);
 		
 
 	}
@@ -195,6 +220,8 @@ public class MapView extends JFrame implements WindowListener{
 		}
 		addMouseListener(shovel);
 		addMouseMotionListener(shovel);
+		addMouseListener(fertilizer);
+		addMouseMotionListener(fertilizer);
 	}
 		
 	@Override
@@ -205,7 +232,10 @@ public class MapView extends JFrame implements WindowListener{
 
 	@Override
 	public void windowClosing(WindowEvent e) {
+
 		musicPlayer.musicStop();
+		GameState.gameover=true;
+
 	}
 
 	@Override
