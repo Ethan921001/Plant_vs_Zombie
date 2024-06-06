@@ -63,6 +63,7 @@ public class MapView extends JFrame implements WindowListener{
 		
 ///	
 		panel=new JPanel();
+		panel.setBounds(0, 0, 1400, 550);
 		
 		label=new JLabel();
 		label.setBounds(0, 0, 1400, 600);
@@ -85,7 +86,7 @@ public class MapView extends JFrame implements WindowListener{
 		*/
 		setContentPane(panel);
 		setLayout(null);
-		setSize(1400, 600);
+		setSize(1400, 650);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setVisible(false);
 		
