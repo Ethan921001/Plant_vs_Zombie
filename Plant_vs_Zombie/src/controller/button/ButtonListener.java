@@ -28,6 +28,12 @@ public class ButtonListener implements ActionListener{
 			GameState.pause=false;
 			break;
 		}
+		case "Gameover":{
+			GameState.state=3;
+			GameState.gameover=true;
+			GameState.pause=false;
+			break;
+		}
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + action);
 		}
