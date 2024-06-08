@@ -6,15 +6,14 @@ import java.io.IOException;
 import javax.sound.sampled.*;
 public class MusicPlayer extends Thread{
 	private Clip clip;
-	private float previousVolume = 1.0f, currentVolume = 1.0f;
-	private FloatControl fc;
+	private FloatControl floatControl;
 	public void setFile(String musicFile) {
 		try {
 			File file = new File(musicFile);
 			AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
 			clip = AudioSystem.getClip();
 			clip.open(audioStream);
-			fc = (FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
+			floatControl = (FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -67,4 +66,12 @@ public class MusicPlayer extends Thread{
 		//currentVolume = 6.0f;
 		fc.setValue(6.0f);
 	}*/
+	
+	public FloatControl get_floatControl() {
+		return floatControl;
+	}
+	
+	public void setVolume(int newVolume) {
+		floatControl.setValue((float)newVolume);
+	}
 }

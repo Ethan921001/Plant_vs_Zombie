@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 
 import controller.button.ButtonListener;
 import controller.button.StartButton;
+import controller.scrollbar.VolumnSlider;
 import model.system.MusicPlayer;
 
 public class MenuView extends JFrame implements ComponentListener{
@@ -41,6 +42,11 @@ public class MenuView extends JFrame implements ComponentListener{
 		startButton.setLocation(445, 100);
 		panel.add(startButton,0);
 		
+		VolumnSlider volumnSlider = new VolumnSlider(menuMusicPlayer);
+		volumnSlider.setBounds(550, 350, 150, 20);
+		volumnSlider.setBackground(Color.gray);
+		panel.add(volumnSlider);
+		
 		JLabel jl=new JLabel();
 		jl.setIcon(new ImageIcon(background));
 		jl.setBounds(0, 0, 900, 600);
@@ -52,6 +58,7 @@ public class MenuView extends JFrame implements ComponentListener{
 		setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+        
         
 	}
 	
@@ -84,6 +91,10 @@ public class MenuView extends JFrame implements ComponentListener{
 	public void componentMoved(ComponentEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public MusicPlayer getMusicPlayer() {
+		return musicPlayer;
 	}
 	
 }

@@ -13,7 +13,7 @@ public class Shovel implements MouseMotionListener, MouseListener{
 	private int initial_x=130, initial_y=30;
 	private int cur_x=130, cur_y=30;
 	private int width =76, height=34;
-	private int offset_x=38, offset_y=17;
+	private int offset_x=45, offset_y=35;
 	private boolean draging = false;
 	
 	public Shovel(PlantFactory plantFactory) {
@@ -103,7 +103,7 @@ public class Shovel implements MouseMotionListener, MouseListener{
 	public void mouseMoved(MouseEvent e) {}
 	
 	public boolean contains(int x, int y) {
-		return (x>=this.cur_x && x<=this.cur_x+this.width && y>=this.cur_y && y<=this.cur_y+this.height);
+		return (x>=this.cur_x && x<=this.cur_x+this.width && y>=this.cur_y+30 && y<=this.cur_y+this.height+50);
 	}
 	
 }

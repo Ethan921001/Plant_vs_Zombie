@@ -60,7 +60,7 @@ public class GameStage {
 		fertilizer = new Fertilizer(plant_factory);
 		map_view=new MapView(zombies,plants,bullets,cards,economySystem,judger,shovel,fertilizer);	
 		menu_view=new MenuView();
-		pauseWindow=new PauseWindow();
+		pauseWindow=new PauseWindow(map_view.getMusicPlayer());
 		
 		//map_view.add(new PauseButton());
 	
@@ -77,10 +77,11 @@ public class GameStage {
 				map_view.setVisible(false);
 			}
 			else if(GameState.state == 2) {
-				timer.addTime();
+				
 				map_view.setVisible(true);
 				menu_view.setVisible(false);
 				while(!GameState.gameover){
+					timer.addTime();
 					zombie_factory.summon_zombie(this);			
 					judger.plant_shoot(plants, bullets);
 					judger.plant_produce_sunshine(plants, economySystem);
@@ -141,7 +142,7 @@ public class GameStage {
 		fertilizer = new Fertilizer(plant_factory);
 		map_view=new MapView(zombies,plants,bullets,cards,economySystem,judger,shovel,fertilizer);	
 		//menu_view=new MenuView();
-		pauseWindow=new PauseWindow();
+		pauseWindow=new PauseWindow(map_view.getMusicPlayer());
 	}
 	
 	

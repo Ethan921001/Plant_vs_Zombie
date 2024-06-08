@@ -14,6 +14,7 @@ import java.awt.image.*;
 import controller.*;
 import controller.button.PauseButton;
 import controller.card.Card;
+import controller.scrollbar.VolumnSlider;
 import model.Entity.*;
 import model.Entity.plant.*;
 import model.Entity.zombie.*;
@@ -76,8 +77,6 @@ public class MapView extends JFrame implements WindowListener{
 		panel.add(pauseButton,0);
 		
 ///		
-		
-	
 		
 		/*
 		JPanel panel =new JPanel();
@@ -269,5 +268,9 @@ public class MapView extends JFrame implements WindowListener{
 	}
 	
 	public void paintComponent(Graphics g) {
+	}
+	
+	public MusicPlayer getMusicPlayer() {
+		return musicPlayer;
 	}
 }
