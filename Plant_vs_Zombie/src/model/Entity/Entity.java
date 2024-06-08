@@ -14,7 +14,7 @@ public abstract class Entity{
 	//速度(負值向左、0不動、正值向右)
 	private int speed=0;
 	//生命值
-	private int  health=5;
+	private int  health=5, max_health=5;
 	//死亡後存在時間
 	private int died_time=0, max_died_time=0;
 	//存活與否
@@ -58,6 +58,10 @@ public abstract class Entity{
 		return health;
 	}
 	
+	public int get_max_health() {
+		return max_health;
+	}
+	
 	public String get_name() {
 		return name;
 	}
@@ -92,6 +96,10 @@ public abstract class Entity{
 	
 	public void set_health(int h) {
 		this.health = h;
+	}
+	
+	public void set_max_health(int h) {
+		this.max_health = h;
 	}
 	
 	public boolean died_time_out() {

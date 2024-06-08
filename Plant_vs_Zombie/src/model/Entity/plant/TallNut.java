@@ -1,6 +1,6 @@
 package model.Entity.plant;
 
-public class TallNut extends Plant{
+public class TallNut extends WallNut{
 	
 	public TallNut(String name, int row, int col) {
 		super(name, row, col);
@@ -8,7 +8,10 @@ public class TallNut extends Plant{
 		set_bounding_box_width(65);
 		set_speed(0);
 		set_imgsrc("Images/Plants/TallNut.gif");
-		set_health(80);
+		setImgsrcCracked1("Images/Plants/TallnutCracked1.gif");
+		setImgsrcCracked2("Images/Plants/TallnutCracked2.gif");
+		set_max_health(60);
+		set_health(60);
 		set_y(40+100*row);
 	}
 }

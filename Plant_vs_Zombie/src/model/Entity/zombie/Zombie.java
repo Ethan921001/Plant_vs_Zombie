@@ -5,9 +5,13 @@ import model.Entity.plant.Plant;
 
 public class Zombie extends Entity{
 	
+	private int cooldown, cooldown_counter;
+	
 	public Zombie(String name, int row, int col) {
 		
 		super( name, row, col);
+		setCooldown(5);
+		setCooldownCounter(5);
 		set_bounding_box_width(91);
 		set_bounding_box_height(129);
 		set_y(50+100*row);
@@ -30,6 +34,16 @@ public class Zombie extends Entity{
 		return false;
 	}	
 	
+	public boolean attackReady(){
+		if(cooldown_counter>=cooldown) {
+			setCooldownCounter(0);
+			return true;
+		}
+		setCooldownCounter(getCooldownCounter()+1);
+		return false;
+		
+	}
+	
 	public void turn_to_attack(){
 		set_imgsrc("Images/Zombies/zombie_attack.gif");
 	}
@@ -40,5 +54,21 @@ public class Zombie extends Entity{
 	
 	public void turn_to_die(){
 		set_imgsrc("Images/Zombies/grave.png");
+	}
+	
+	public void setCooldown(int cooldown) {
+		this.cooldown=cooldown;
+	}
+	
+	public int getCooldown() {
+		return cooldown;
+	}
+	
+	public void setCooldownCounter(int counter) {
+		this.cooldown_counter=counter;
+	}
+	
+	public int getCooldownCounter() {
+		return cooldown_counter;
 	}
 }

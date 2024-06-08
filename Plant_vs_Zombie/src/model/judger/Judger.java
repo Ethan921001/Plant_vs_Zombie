@@ -78,43 +78,20 @@ public class Judger {
 				Plant plant = plants.get(j);
 				if(zombie.zombie_hit(plant)) {
 					hit=true;
-					plant.set_health(plant.get_health()-1);
+					if(zombie.attackReady()) {
+						plant.set_health(plant.get_health()-1);
+						attackSound = new MusicPlayer();
+						//attackSound.setFile("Audio/chomp1.wav");
+						attackSound.setFile("Audio/bite_2.wav");
+						attackSound.start();	
+					}		
 				}
-				
 			}
 			if(hit) {
 				zombie.turn_to_attack();
-				attackSound = new MusicPlayer();
-				//attackSound.setFile("Audio/chomp1.wav");
-				attackSound.setFile("Audio/bite_2.wav");
-				attackSound.start();
-				/*
-				if (!attackSound.isplaying()) {
-					attackSound.start();
-					//attackSound.loop();
-				}
-				*/
-				/*
-				try {
-					if (!attackClip.isRunning()) {
-						attackClip.loop(attackClip.LOOP_CONTINUOUSLY);
-						attackClip.start();
-					}
-				}catch (Exception e) {
-					System.out.println(e.getMessage());
-				} */
 			}
 			else if(zombie.is_alive()){
 				zombie.turn_to_walk();
-				/*
-				if (attackSound.isplaying()) {
-					attackSound.musicStop();
-				}
-				*/
-				/*
-				if (attackClip != null && attackClip.isRunning()) {
-					attackClip.stop();
-				}*/
 				zombie.move();
 			}
 			

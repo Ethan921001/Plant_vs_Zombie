@@ -94,7 +94,7 @@ public class MenuView extends JFrame implements ComponentListener{
 	}
 	
 	public MusicPlayer getMusicPlayer() {
-		return musicPlayer;
+		return menuMusicPlayer;
 	}
 	
 }
