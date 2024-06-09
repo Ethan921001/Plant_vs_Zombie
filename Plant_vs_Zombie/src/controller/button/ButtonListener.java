@@ -3,7 +3,7 @@ package controller.button;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import controller.GameState;
+import model.system.GameState;
 
 public class ButtonListener implements ActionListener{
 	

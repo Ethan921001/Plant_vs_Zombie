@@ -1,4 +1,4 @@
-package controller;
+package model.system;
 
 public class GameState {
 	public static int state = 1;

@@ -13,12 +13,12 @@ import model.Entity.*;
 import model.Entity.plant.Plant;
 import model.Entity.zombie.Zombie;
 
-public class test2 extends JPanel{
+public class Test2 extends JPanel{
 	
 	Graphics graphics;
 	Image img;
 	
-	public test2() {
+	public Test2() {
 	}
 	
 	

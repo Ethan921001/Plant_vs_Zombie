@@ -8,13 +8,12 @@ import model.Entity.*;
 import model.Entity.plant.Plant;
 import model.Entity.zombie.Zombie;
 import model.system.EconomySystem;
+import model.system.GameState;
 import model.system.MusicPlayer;
 
 import java.io.File;
 import java.io.IOException;
 import javax.sound.sampled.*;
-
-import controller.GameState;
 
 public class Judger {
 	

@@ -15,9 +15,6 @@ import model.Entity.*;
 import model.Entity.plant.Plant;
 import model.Entity.zombie.Zombie;
 import model.judger.*;
-import Game.Game;
-import Game.stop_frame;
-import Game.Game.BackgroundFrame;
 import model.system.GameTimer;
 
 //遊戲中所有model將在這裡被調用
@@ -39,7 +36,6 @@ public class GameStage {
 	private Thread thread;
 	private Judger judger;
 	private EconomySystem economySystem;
-	private BackgroundFrame surface;
 	private Shovel shovel;
 	private Fertilizer fertilizer;
 	private GameTimer timer;

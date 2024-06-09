@@ -5,7 +5,7 @@ import java.awt.*;
 import java.security.PublicKey;
 
 
-public class test extends JPanel{
+public class Test extends JPanel{
 	public static void main(String[] args) {
 		
 	
