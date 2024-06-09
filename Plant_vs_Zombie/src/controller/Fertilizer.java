@@ -10,8 +10,8 @@ public class Fertilizer implements MouseMotionListener, MouseListener{
 	
 	private PlantFactory plant_factory;
 	private String imgsrc ="Images\\UI\\fertilizer.png";
-	private int initial_x=30, initial_y=425;
-	private int cur_x=30, cur_y=425;
+	private int initial_x=30, initial_y=400;
+	private int cur_x=30, cur_y=400;
 	private int width =76, height=76;
 	private int offset_x=38, offset_y=38;
 	private boolean draging = false;

@@ -62,7 +62,7 @@ public class PlantFactory {
 	public void upgrade_plant(int x, int y) {
 		int col = (x-210)/80;
 		int row = (y-50)/100;
-		int fertilier_price = 200;
+		int fertilier_price = 500;
 		if(row>=0 && row<=4 && col>=0 && col<=8) {
 			if(plants_arr[row][col]!=null && plants_arr[row][col].is_alive()) {
 				Plant plant = plants_arr[row][col];
