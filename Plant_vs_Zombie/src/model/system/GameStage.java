@@ -18,6 +18,7 @@ import model.judger.*;
 import Game.Game;
 import Game.stop_frame;
 import Game.Game.BackgroundFrame;
+import model.system.GameTimer;
 
 //遊戲中所有model將在這裡被調用
 public class GameStage {
@@ -59,7 +60,7 @@ public class GameStage {
 		judger=new Judger();
 		shovel=new Shovel(plant_factory);
 		fertilizer = new Fertilizer(plant_factory);
-		map_view=new MapView(zombies,plants,bullets,cards,economySystem,judger,shovel,fertilizer);	
+		map_view=new MapView(zombies,plants,bullets,cards,economySystem,judger,shovel,fertilizer,timer);	
 		menu_view=new MenuView();
 		pauseWindow=new PauseWindow(map_view.getMusicPlayer());
 		gameoverWindow=new GameoverWindow();
@@ -152,7 +153,7 @@ public class GameStage {
 		judger=new Judger();
 		shovel=new Shovel(plant_factory);
 		fertilizer = new Fertilizer(plant_factory);
-		map_view=new MapView(zombies,plants,bullets,cards,economySystem,judger,shovel,fertilizer);	
+		map_view=new MapView(zombies,plants,bullets,cards,economySystem,judger,shovel,fertilizer,timer);	
 		//menu_view=new MenuView();
 		pauseWindow=new PauseWindow(map_view.getMusicPlayer());
 	}

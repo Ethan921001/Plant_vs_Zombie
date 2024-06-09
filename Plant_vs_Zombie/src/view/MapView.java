@@ -20,7 +20,9 @@ import model.Entity.plant.*;
 import model.Entity.zombie.*;
 import model.judger.*;
 import model.system.EconomySystem;
+import model.system.GameTimer;
 import model.system.MusicPlayer;
+
 
 //繪製地圖
 
@@ -41,8 +43,9 @@ public class MapView extends JFrame implements WindowListener{
 	private MusicPlayer musicPlayer;
 	private JPanel panel;
 	private JLabel label;
+	private GameTimer timer;
     
-	public MapView(ArrayList<Zombie> zombies, ArrayList<Plant> plants, ArrayList<Bullet> bullets , ArrayList<Card> cards, EconomySystem ec, Judger judger, Shovel shovel, Fertilizer fertilizer) {
+	public MapView(ArrayList<Zombie> zombies, ArrayList<Plant> plants, ArrayList<Bullet> bullets , ArrayList<Card> cards, EconomySystem ec, Judger judger, Shovel shovel, Fertilizer fertilizer, GameTimer timer) {
 		this.zombies=zombies;
 		this.plants=plants;
 		this.bullets=bullets;
@@ -51,6 +54,7 @@ public class MapView extends JFrame implements WindowListener{
 		this.judger=judger;
 		this.shovel=shovel;
 		this.fertilizer = fertilizer;
+		this.timer = timer;
 		
 		add_mouse_listeners_and_motion_isteners();
 		
@@ -143,6 +147,12 @@ public class MapView extends JFrame implements WindowListener{
 		//繪製肥料
 		Image fertilizer_img = new ImageIcon(fertilizer.get_imgsrc()).getImage();
 		gImage.drawImage(fertilizer_img, fertilizer.get_cur_x(), fertilizer.get_cur_y(), null);
+		// display score board
+		int score= (int)(timer.getTime() * 0.6);
+		Font f =new Font("Palatino",Font.BOLD,40);
+		gImage.setFont(f);
+		gImage.setColor(Color.yellow);
+		gImage.drawString("Score : " + Integer.toString(score), 1120, 565);
 		
 		//display sunshine icon
 		Image sun = new ImageIcon("Images/UI/Sun.png").getImage();
