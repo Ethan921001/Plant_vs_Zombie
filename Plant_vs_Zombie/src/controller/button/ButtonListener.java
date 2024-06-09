@@ -34,6 +34,12 @@ public class ButtonListener implements ActionListener{
 			GameState.pause=false;
 			break;
 		}
+		case "Restart": {
+			GameState.state=2;
+			GameState.restart=true;
+			break;
+		}
+		
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + action);
 		}

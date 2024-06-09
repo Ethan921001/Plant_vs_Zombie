@@ -8,8 +8,12 @@ import model.system.MusicPlayer;
 public class test3 {
 	public static void main(String[] args) {
 		GameStage stage = new GameStage();
-		stage.reset();
-		stage.play_game();
+		do {
+			GameState.restart=false;
+			stage.reset();
+			stage.play_game();
+		}while(GameState.restart);
+
 		System.exit(0);
 	}
 }
