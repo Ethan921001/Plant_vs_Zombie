@@ -29,7 +29,6 @@ public class GameStage {
 	private GameoverWindow gameoverWindow;
 	
 	private PauseWindow pauseWindow;
-	private Thread thread;
 	private Judger judger;
 	private EconomySystem economySystem;
 	private Shovel shovel;
@@ -46,7 +45,6 @@ public class GameStage {
 		zombie_factory=new ZombieFactory(timer);
 		economySystem=new EconomySystem();
 		plant_factory=new PlantFactory(plants,economySystem);
-		thread=new Thread();
 		cards=new ArrayList<Card>();
 		initialize_cards();
 		judger=new Judger();
@@ -88,7 +86,7 @@ public class GameStage {
 					//更新顯示畫面
 					map_view.paint(map_view.getGraphics());
 					try {
-						thread.sleep(100);
+						Thread.sleep(100);
 					} catch (Exception e) {
 						System.out.println(e.getMessage());
 					}
@@ -102,13 +100,13 @@ public class GameStage {
 				}
 				
 				try {
-					thread.sleep(1000);
+					Thread.sleep(1000);
 				} catch (Exception e) {
 					System.out.println(e.getMessage());
 				}
 				GameState.gameover=false;
 				while(!GameState.restart&&!GameState.gameover) {
-					gameoverWindow.showScore((int)(timer.getTime()*0.6));
+					gameoverWindow.showScore((int)((timer.getTime()-1)*0.6));
 					gameoverWindow.setVisible(true);
 				}
 				gameoverWindow.setVisible(false);

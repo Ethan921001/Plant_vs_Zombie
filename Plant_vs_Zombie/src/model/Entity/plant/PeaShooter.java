@@ -2,9 +2,6 @@ package model.Entity.plant;
 
 public class PeaShooter extends Plant{
 	
-	private int counter =0;
-	private int cooldown=20;
-	
 	public PeaShooter(String name, int row, int col) {
 		super(name, row, col);
 		
@@ -25,11 +22,5 @@ public class PeaShooter extends Plant{
 			return true;
 		}
 	}
-	
-	public void setCoolDown(int cooldown) {
-		this.cooldown=cooldown;
-	}
-	
-	
 	
 }

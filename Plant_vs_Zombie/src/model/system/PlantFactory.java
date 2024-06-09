@@ -1,15 +1,12 @@
 package model.system;
 
 import java.util.ArrayList;
-
-import model.Entity.Entity;
 import model.Entity.plant.*;
 
 public class PlantFactory {
 
 	private Plant[][] plants_arr; 
 	private ArrayList<Plant> plants;
-	private ArrayList<Entity> entities;
 	private EconomySystem economySystem;
 	private MusicPlayer placeSound;
 	
