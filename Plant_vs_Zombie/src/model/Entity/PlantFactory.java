@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import model.Entity.plant.*;
 import model.system.EconomySystem;
+import model.system.MusicPlayer;
 
 public class PlantFactory {
 
@@ -11,6 +12,7 @@ public class PlantFactory {
 	private ArrayList<Plant> plants;
 	private ArrayList<Entity> entities;
 	private EconomySystem economySystem;
+	private MusicPlayer placeSound;
 	
 	public PlantFactory(ArrayList<Plant> plants, EconomySystem economySystem) {
 		this.plants_arr = new Plant[5][9];
@@ -43,6 +45,10 @@ public class PlantFactory {
 					plants_arr[row][col]=plant;
 					plants.add(plant);
 					economySystem.set_sunshine(economySystem.get_sunshine()-plant.get_price());
+					placeSound = new MusicPlayer();
+					placeSound.setFile("Audio/placePlantWAV.wav");
+					placeSound.start();
+					
 				}
 				
 			}

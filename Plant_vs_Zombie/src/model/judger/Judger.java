@@ -14,6 +14,8 @@ import java.io.File;
 import java.io.IOException;
 import javax.sound.sampled.*;
 
+import controller.GameState;
+
 public class Judger {
 	
 	private ArrayList<Entity> entities;
@@ -172,6 +174,7 @@ public class Judger {
 		for (int i=0; i < zombies.size();i++) {
 			Zombie zombie = zombies.get(i);
 			if (zombie.get_x()<=200) {
+				GameState.gameover=true;
 				return true;
 			}
 		}

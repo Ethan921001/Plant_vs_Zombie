@@ -32,6 +32,7 @@ public class GameStage {
 	private PlantFactory plant_factory;
 	private MapView map_view;
 	private MenuView menu_view;
+	private GameoverWindow gameoverWindow;
 	
 	private PauseWindow pauseWindow;
 	private Thread thread;
@@ -61,6 +62,7 @@ public class GameStage {
 		map_view=new MapView(zombies,plants,bullets,cards,economySystem,judger,shovel,fertilizer);	
 		menu_view=new MenuView();
 		pauseWindow=new PauseWindow(map_view.getMusicPlayer());
+		gameoverWindow=new GameoverWindow();
 		
 		//map_view.add(new PauseButton());
 	
@@ -93,7 +95,7 @@ public class GameStage {
 					//更新顯示畫面
 					map_view.paint(map_view.getGraphics());
 					try {
-						thread.sleep(100);
+						thread.sleep(10);
 					} catch (Exception e) {
 						System.out.println(e.getMessage());
 					}
@@ -105,6 +107,16 @@ public class GameStage {
 					pauseWindow.setVisible(false);
 					
 				}
+				
+				try {
+					thread.sleep(2000);
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
+				while(!GameState.restart) {
+					gameoverWindow.setVisible(true);
+				}
+				gameoverWindow.setVisible(false);
 				
 			}
 		}
