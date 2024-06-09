@@ -116,6 +116,7 @@ public class GameStage {
 				}
 				GameState.gameover=false;
 				while(!GameState.restart&&!GameState.gameover) {
+					gameoverWindow.showScore((int)(timer.getTime()*0.6));
 					gameoverWindow.setVisible(true);
 				}
 				gameoverWindow.setVisible(false);
