@@ -1,8 +1,6 @@
 package model.system;
 import java.io.File;
 
-import java.io.IOException;
-
 import javax.sound.sampled.*;
 public class MusicPlayer extends Thread{
 	private Clip clip;

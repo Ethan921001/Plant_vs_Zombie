@@ -1,10 +1,9 @@
-package model.Entity;
+package model.system;
 
 import java.util.ArrayList;
 
+import model.Entity.Entity;
 import model.Entity.plant.*;
-import model.system.EconomySystem;
-import model.system.MusicPlayer;
 
 public class PlantFactory {
 

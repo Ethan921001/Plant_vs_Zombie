@@ -5,10 +5,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.util.*;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import view.*;
 import model.Entity.*;
 import model.Entity.plant.Plant;
 import model.Entity.zombie.Zombie;

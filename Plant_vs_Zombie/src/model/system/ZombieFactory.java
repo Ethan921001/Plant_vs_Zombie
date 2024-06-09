@@ -1,14 +1,10 @@
-package model.Entity;
+package model.system;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 import model.Entity.zombie.BucketZombie;
 import model.Entity.zombie.ConeZombie;
 import model.Entity.zombie.Zombie;
-import model.system.GameStage;
-import model.system.GameTimer;
-import model.system.*;
 //生產殭屍
 public class ZombieFactory {
 	

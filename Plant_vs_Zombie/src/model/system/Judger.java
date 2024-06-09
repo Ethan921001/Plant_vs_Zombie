@@ -1,4 +1,4 @@
-package model.judger;
+package model.system;
 
 import java.util.ArrayList;
 
@@ -7,13 +7,6 @@ import java.util.ArrayList;
 import model.Entity.*;
 import model.Entity.plant.Plant;
 import model.Entity.zombie.Zombie;
-import model.system.EconomySystem;
-import model.system.GameState;
-import model.system.MusicPlayer;
-
-import java.io.File;
-import java.io.IOException;
-import javax.sound.sampled.*;
 
 public class Judger {
 	

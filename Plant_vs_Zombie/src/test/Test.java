@@ -1,8 +1,6 @@
 package test;
 
 import javax.swing.*;
-import java.awt.*;
-import java.security.PublicKey;
 
 
 public class Test extends JPanel{

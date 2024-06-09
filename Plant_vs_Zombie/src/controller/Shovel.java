@@ -4,7 +4,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-import model.Entity.PlantFactory;
+import model.system.PlantFactory;
 
 public class Shovel implements MouseMotionListener, MouseListener{
 	

@@ -3,8 +3,7 @@ package controller.card;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-import model.Entity.PlantFactory;
-import model.Entity.plant.Plant;
+import model.system.PlantFactory;
 
 import java.awt.event.MouseEvent;
 

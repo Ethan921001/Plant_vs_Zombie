@@ -1,11 +1,5 @@
 package controller.scrollbar;
 
-import java.awt.Scrollbar;
-import java.awt.event.AdjustmentEvent;
-import java.awt.event.AdjustmentListener;
-
-import javax.sound.sampled.FloatControl;
-import javax.swing.JScrollBar;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;

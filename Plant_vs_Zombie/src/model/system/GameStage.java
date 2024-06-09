@@ -2,10 +2,7 @@ package model.system;
 
 import java.util.*;
 
-import javax.swing.JFrame;
-
 import view.*;
-import model.*;
 import controller.*;
 import controller.card.Card;
 import controller.card.PeaShooterCard;
@@ -14,8 +11,7 @@ import controller.card.WallNutCard;
 import model.Entity.*;
 import model.Entity.plant.Plant;
 import model.Entity.zombie.Zombie;
-import model.judger.*;
-import model.system.GameTimer;
+
 
 //遊戲中所有model將在這裡被調用
 public class GameStage {
@@ -106,7 +102,7 @@ public class GameStage {
 				}
 				
 				try {
-					thread.sleep(2000);
+					thread.sleep(1000);
 				} catch (Exception e) {
 					System.out.println(e.getMessage());
 				}

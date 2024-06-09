@@ -1,6 +1,6 @@
 package controller.card;
 
-import model.Entity.PlantFactory;
+import model.system.PlantFactory;
 
 public class SunFlowerCard extends Card{
 

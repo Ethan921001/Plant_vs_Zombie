@@ -2,7 +2,6 @@ package maingame;
 
 import model.system.GameStage;
 import model.system.GameState;
-import model.system.MusicPlayer;
 
 public class MainGame {
 	public static void main(String[] args) {

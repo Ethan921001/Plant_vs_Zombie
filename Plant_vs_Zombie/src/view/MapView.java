@@ -2,10 +2,8 @@ package view;
 
 import java.awt.*;
 
-import java.awt.List;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.awt.image.ImageObserver;
 import java.util.*;
 
 import javax.swing.*;
@@ -14,11 +12,10 @@ import java.awt.image.*;
 import controller.*;
 import controller.button.PauseButton;
 import controller.card.Card;
-import controller.scrollbar.VolumnSlider;
 import model.Entity.*;
 import model.Entity.plant.*;
 import model.Entity.zombie.*;
-import model.judger.*;
+import model.system.Judger;
 import model.system.EconomySystem;
 import model.system.GameState;
 import model.system.GameTimer;
@@ -36,7 +33,6 @@ public class MapView extends JFrame implements WindowListener{
 	private ArrayList<Card> cards;
 	private Judger judger;
 	private EconomySystem economySystem;
-	private Image ScreenImage;
 	private Image offScreenImage;
     private Shovel shovel;
     private Fertilizer fertilizer;

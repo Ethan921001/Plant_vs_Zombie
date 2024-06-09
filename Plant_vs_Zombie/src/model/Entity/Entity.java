@@ -1,9 +1,5 @@
 package model.Entity;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-
 //實體抽象類； 實體:有碰撞行為的物件，如:植物、殭屍、子彈
 public abstract class Entity{
 	
