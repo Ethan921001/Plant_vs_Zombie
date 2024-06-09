@@ -18,6 +18,7 @@ import model.judger.*;
 import Game.Game;
 import Game.stop_frame;
 import Game.Game.BackgroundFrame;
+import model.system.GameTimer;
 
 //遊戲中所有model將在這裡被調用
 public class GameStage {
@@ -32,6 +33,7 @@ public class GameStage {
 	private PlantFactory plant_factory;
 	private MapView map_view;
 	private MenuView menu_view;
+	private GameoverWindow gameoverWindow;
 	
 	private PauseWindow pauseWindow;
 	private Thread thread;
@@ -58,9 +60,10 @@ public class GameStage {
 		judger=new Judger();
 		shovel=new Shovel(plant_factory);
 		fertilizer = new Fertilizer(plant_factory);
-		map_view=new MapView(zombies,plants,bullets,cards,economySystem,judger,shovel,fertilizer);	
+		map_view=new MapView(zombies,plants,bullets,cards,economySystem,judger,shovel,fertilizer,timer);	
 		menu_view=new MenuView();
 		pauseWindow=new PauseWindow(map_view.getMusicPlayer());
+		gameoverWindow=new GameoverWindow();
 		
 		//map_view.add(new PauseButton());
 	
@@ -93,7 +96,7 @@ public class GameStage {
 					//更新顯示畫面
 					map_view.paint(map_view.getGraphics());
 					try {
-						thread.sleep(100);
+						thread.sleep(10);
 					} catch (Exception e) {
 						System.out.println(e.getMessage());
 					}
@@ -105,6 +108,16 @@ public class GameStage {
 					pauseWindow.setVisible(false);
 					
 				}
+				
+				try {
+					thread.sleep(2000);
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
+				while(!GameState.restart) {
+					gameoverWindow.setVisible(true);
+				}
+				gameoverWindow.setVisible(false);
 				
 			}
 		}
@@ -140,7 +153,7 @@ public class GameStage {
 		judger=new Judger();
 		shovel=new Shovel(plant_factory);
 		fertilizer = new Fertilizer(plant_factory);
-		map_view=new MapView(zombies,plants,bullets,cards,economySystem,judger,shovel,fertilizer);	
+		map_view=new MapView(zombies,plants,bullets,cards,economySystem,judger,shovel,fertilizer,timer);	
 		//menu_view=new MenuView();
 		pauseWindow=new PauseWindow(map_view.getMusicPlayer());
 	}
