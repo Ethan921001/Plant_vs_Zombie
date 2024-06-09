@@ -2,7 +2,7 @@ package model.system;
 
 public class GameTimer {
 
-	int time;
+	private int time;
 	
 	public GameTimer() {
 		time=0;
