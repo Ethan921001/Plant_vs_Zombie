@@ -46,7 +46,7 @@ public class MusicPlayer extends Thread{
 		clip.loop(value);
 	}
 	
-	public boolean isplaying() {
+	public boolean isPlaying() {
 		if (clip.isRunning()) {
 			return true;
 		}
