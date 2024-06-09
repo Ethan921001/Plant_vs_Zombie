@@ -13,8 +13,6 @@ public abstract class Entity{
 	private int  health=5, max_health=5;
 	//死亡後存在時間
 	private int died_time=0, max_died_time=0;
-	//存活與否
-	private boolean alive=true;
 	//圖像路徑
 	private String name=" ";
 	//碰撞箱長、寬
@@ -138,10 +136,6 @@ public abstract class Entity{
 	}
 	//將圖像切換為死亡
 	abstract public void turn_to_die();
-	
-	public void set_alive(boolean alive) {
-		this.alive=alive;
-	}
 	
 	public boolean is_alive() {
 		return this.health>0;

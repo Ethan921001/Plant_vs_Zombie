@@ -179,6 +179,7 @@ public class MapView extends JFrame implements WindowListener{
 		else {
 			BufferedImage blur_img=BlurImage(toBufferedImage(offScreenImage));
 			//label.getGraphics().drawImage(blur_img, 0, 0, null);
+			label.setIcon(new ImageIcon(blur_img));
 			gameover_view();
 		}
 		
