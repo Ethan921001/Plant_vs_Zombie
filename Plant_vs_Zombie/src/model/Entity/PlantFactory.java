@@ -62,17 +62,20 @@ public class PlantFactory {
 	public void upgrade_plant(int x, int y) {
 		int col = (x-210)/80;
 		int row = (y-50)/100;
+		int fertilier_price = 200;
 		if(row>=0 && row<=4 && col>=0 && col<=8) {
 			if(plants_arr[row][col]!=null && plants_arr[row][col].is_alive()) {
 				Plant plant = plants_arr[row][col];
-				if(plant.get_name()=="pea_shooter") {
+				if(plant.get_name()=="pea_shooter" && economySystem.get_sunshine() >= fertilier_price) {
+					economySystem.set_sunshine(economySystem.get_sunshine() - fertilier_price);
 					plant.set_health(0);
 					Plant new_plant=new GatlingPea("GatlingPea",row,col);
 					plants_arr[row][col]=new_plant;
 					plants.add(new_plant);
 				}
 				
-				if(plant.get_name()=="wall_nut") {
+				if(plant.get_name()=="wall_nut" && economySystem.get_sunshine() >= fertilier_price) {
+					economySystem.set_sunshine(economySystem.get_sunshine() - fertilier_price);
 					plant.set_health(0);
 					Plant new_plant=new TallNut("TallNut",row,col);
 					plants_arr[row][col]=new_plant;
