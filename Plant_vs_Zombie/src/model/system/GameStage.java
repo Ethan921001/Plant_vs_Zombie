@@ -96,7 +96,7 @@ public class GameStage {
 					//更新顯示畫面
 					map_view.paint(map_view.getGraphics());
 					try {
-						thread.sleep(10);
+						thread.sleep(100);
 					} catch (Exception e) {
 						System.out.println(e.getMessage());
 					}
@@ -114,7 +114,8 @@ public class GameStage {
 				} catch (Exception e) {
 					System.out.println(e.getMessage());
 				}
-				while(!GameState.restart) {
+				GameState.gameover=false;
+				while(!GameState.restart&&!GameState.gameover) {
 					gameoverWindow.setVisible(true);
 				}
 				gameoverWindow.setVisible(false);
@@ -139,23 +140,13 @@ public class GameStage {
 	}
 	
 	public void reset() {
-		plants=new ArrayList<Plant>();
-		zombies=new ArrayList<Zombie>();
-		bullets=new ArrayList<Bullet>();
-		entities=new ArrayList<Entity>();
-		timer=new GameTimer();
-		zombie_factory=new ZombieFactory(timer);
-		economySystem=new EconomySystem();
-		plant_factory=new PlantFactory(plants,economySystem);
-		thread=new Thread();
-		cards=new ArrayList<Card>();
+		plants.clear();
+		zombies.clear();
+		bullets.clear();
+		entities.clear();
+		timer.setTimer(0);
+		economySystem.set_sunshine(100);
 		initialize_cards();
-		judger=new Judger();
-		shovel=new Shovel(plant_factory);
-		fertilizer = new Fertilizer(plant_factory);
-		map_view=new MapView(zombies,plants,bullets,cards,economySystem,judger,shovel,fertilizer,timer);	
-		//menu_view=new MenuView();
-		pauseWindow=new PauseWindow(map_view.getMusicPlayer());
 	}
 	
 	

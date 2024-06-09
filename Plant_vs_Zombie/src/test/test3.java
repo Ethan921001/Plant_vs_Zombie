@@ -9,6 +9,7 @@ public class test3 {
 	public static void main(String[] args) {
 		GameStage stage = new GameStage();
 		do {
+			GameState.gameover=false;
 			GameState.restart=false;
 			stage.reset();
 			stage.play_game();

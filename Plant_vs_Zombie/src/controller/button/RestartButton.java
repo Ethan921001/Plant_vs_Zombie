@@ -9,7 +9,7 @@ public class RestartButton extends JButton{
 		super("");
 		setIcon(new ImageIcon("Images\\UI\\restart_button.png"));
 		addActionListener(new ButtonListener("Restart"));
-		setSize(384, 174);
+		setSize(113, 41);
 		setContentAreaFilled(false);
 	}
 	

@@ -37,6 +37,7 @@ public class ButtonListener implements ActionListener{
 		case "Restart": {
 			GameState.state=2;
 			GameState.restart=true;
+			GameState.gameover=true;
 			break;
 		}
 		
