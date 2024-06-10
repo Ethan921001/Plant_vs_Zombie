@@ -72,7 +72,7 @@ public class Judger {
 				Plant plant = plants.get(j);
 				if(zombie.zombie_hit(plant)) {
 					hit=true;
-					if(zombie.attackReady()) {
+					if(zombie.attackReady() && zombie.is_alive()) {
 						plant.set_health(plant.get_health()-1);
 						attackSound = new MusicPlayer();
 						//attackSound.setFile("Audio/chomp1.wav");

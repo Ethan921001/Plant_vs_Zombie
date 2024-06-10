@@ -1,4 +1,4 @@
-package controller;
+package controller.tools;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -6,18 +6,18 @@ import java.awt.event.MouseMotionListener;
 
 import model.system.PlantFactory;
 
-public class Fertilizer implements MouseMotionListener, MouseListener{
+public class Shovel implements MouseMotionListener, MouseListener{
 	
 	private PlantFactory plant_factory;
-	private String imgsrc ="Images\\UI\\fertilizer.png";
-	private int initial_x=30, initial_y=400;
-	private int cur_x=30, cur_y=400;
-	private int width =76, height=76;
-	private int offset_x=38, offset_y=38;
+	private String imgsrc ="Images/UI/Shovel.png";
+	private int initial_x=130, initial_y=30;
+	private int cur_x=130, cur_y=30;
+	private int width =76, height=34;
+	private int offset_x=45, offset_y=35;
 	private boolean draging = false;
 	
-	public Fertilizer(PlantFactory plantFactory) {
-		this.plant_factory = plantFactory;		
+	public Shovel(PlantFactory plantFactory) {
+		this.plant_factory=plantFactory;
 	}
 	
 	public String get_imgsrc() {
@@ -72,32 +72,38 @@ public class Fertilizer implements MouseMotionListener, MouseListener{
 		return plant_factory;
 	}
 	
+	public void mousePressed(MouseEvent e) {
+		if(this.contains(e.getX(), e.getY())) {
+			
+			this.draging = true;
+		}
+	}
+	
 	public void mouseDragged(MouseEvent e) {
 		if(draging) {
 			set_cur_x(e.getX()-this.offset_x);
 			this.cur_y = e.getY()-this.offset_y;
 		}
 	}
-	
 	public void mouseReleased(MouseEvent e) {
 		draging = false;
-		plant_factory.upgrade_plant(cur_x, cur_y);
-		// System.out.println("x:"+this.cur_x+" "+"y:"+this.cur_y);
+		plant_factory.delete_plant(cur_x, cur_y);;
+		System.out.println("x:"+this.cur_x+" "+"y:"+this.cur_y);
 		this.cur_x = this.initial_x;
 		this.cur_y = this.initial_y;
+		
 	}
+	
 	public void mouseClicked(MouseEvent e) {}
+	
 	public void mouseEntered(MouseEvent e) {}
+	
 	public void mouseExited(MouseEvent e) {}
+	
 	public void mouseMoved(MouseEvent e) {}
 	
-	public void mousePressed(MouseEvent e) {
-		if(this.contains(e.getX(), e.getY())) {
-			this.draging = true;
-		}
+	public boolean contains(int x, int y) {
+		return (x>=this.cur_x && x<=this.cur_x+this.width && y>=this.cur_y+30 && y<=this.cur_y+this.height+50);
 	}
 	
-	public boolean contains(int x, int y) {
-		return (x>=this.cur_x && x<=this.cur_x+this.width && y>=this.cur_y && y<=this.cur_y+this.height);
-	}
 }
