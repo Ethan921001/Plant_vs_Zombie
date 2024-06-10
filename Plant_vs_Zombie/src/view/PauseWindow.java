@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 
 import controller.button.ContinueButton;
 import controller.button.ExitButton;
-import controller.scrollbar.VolumnSlider;
+import controller.slider.VolumnSlider;
 import model.system.MusicPlayer;
 
 public class PauseWindow extends JFrame{

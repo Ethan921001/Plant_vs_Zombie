@@ -74,6 +74,11 @@ public class PlantFactory {
 					Plant new_plant=new GatlingPea("GatlingPea",row,col);
 					plants_arr[row][col]=new_plant;
 					plants.add(new_plant);
+					
+					MusicPlayer evolution_sound = new MusicPlayer();
+					evolution_sound.setFile("Audio\\evolution.wav");
+					evolution_sound.start();
+					
 				}
 				
 				if(plant.get_name()=="wall_nut" && economySystem.get_sunshine() >= fertilier_price) {
@@ -82,6 +87,10 @@ public class PlantFactory {
 					Plant new_plant=new TallNut("TallNut",row,col);
 					plants_arr[row][col]=new_plant;
 					plants.add(new_plant);
+					
+					MusicPlayer evolution_sound = new MusicPlayer();
+					evolution_sound.setFile("Audio\\evolution.wav");
+					evolution_sound.start();
 				}
 				
 			}

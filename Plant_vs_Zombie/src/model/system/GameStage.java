@@ -8,6 +8,8 @@ import controller.card.Card;
 import controller.card.PeaShooterCard;
 import controller.card.SunFlowerCard;
 import controller.card.WallNutCard;
+import controller.tools.Fertilizer;
+import controller.tools.Shovel;
 import model.Entity.*;
 import model.Entity.plant.Plant;
 import model.Entity.zombie.Zombie;
