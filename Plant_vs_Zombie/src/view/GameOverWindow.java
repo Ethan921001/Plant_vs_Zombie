@@ -13,11 +13,11 @@ import controller.button.RestartButton;
 
 
 
-public class GameoverWindow extends JFrame{
+public class GameOverWindow extends JFrame{
 	
 	private JButton button;
 	
-	public GameoverWindow() {
+	public GameOverWindow() {
 		JPanel panel = new JPanel();
 		
 		JLabel label=new JLabel();

@@ -28,7 +28,7 @@ public class GameStage {
 	private PlantFactory plant_factory;
 	private MapView map_view;
 	private MenuView menu_view;
-	private GameoverWindow gameoverWindow;
+	private GameOverWindow gameoverWindow;
 	
 	private PauseWindow pauseWindow;
 	private Judger judger;
@@ -55,7 +55,7 @@ public class GameStage {
 		map_view=new MapView(zombies,plants,bullets,cards,economySystem,judger,shovel,fertilizer,timer);	
 		menu_view=new MenuView();
 		pauseWindow=new PauseWindow(map_view.getMusicPlayer());
-		gameoverWindow=new GameoverWindow();
+		gameoverWindow=new GameOverWindow();
 		
 		//map_view.add(new PauseButton());
 	
