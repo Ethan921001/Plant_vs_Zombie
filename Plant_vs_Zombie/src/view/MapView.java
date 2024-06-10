@@ -200,8 +200,8 @@ public class MapView extends JFrame implements WindowListener{
 	
 	//繪製gameover字樣
 	public void gameover_view() {
-		Image gameoverView = new ImageIcon("Images\\Gameover\\gameover.png").getImage();
-		this.getGraphics().drawImage(gameoverView, 300, 100, null);
+		Image gameoverView = new ImageIcon("Images\\Gameover\\zombiesWon.png").getImage();
+		this.getGraphics().drawImage(gameoverView, 380, 100, null);
 	}
 	
 	//將img轉為BufferedImage
