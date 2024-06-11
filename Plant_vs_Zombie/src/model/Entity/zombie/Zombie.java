@@ -28,6 +28,7 @@ public class Zombie extends Entity{
 		int zombie_row = this.get_row();
 		int plant_x = plant.get_x()+plant.get_bounding_box_width();
 		int plant_row = plant.get_row();
+		//根據僵屍及植物的x座標及row，去判斷是否有碰撞發生
 		if(plant_x>=x_left && plant_x<=x_right && plant_row==zombie_row) {
 			return true;
 		}
