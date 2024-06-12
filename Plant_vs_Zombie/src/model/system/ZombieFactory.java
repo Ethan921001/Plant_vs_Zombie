@@ -22,13 +22,8 @@ public class ZombieFactory {
 			Random random = new Random();
 			int rand_row = random.nextInt(0, 5);
 			System.out.println("random row : "+rand_row);
-			int rand_zombie = random.nextInt(0,timer.getTime());
-			System.out.println("random zombie : "+rand_zombie);
-			
-			Zombie zombie = new Zombie("Zombie", rand_row, 9);
-			
-			System.out.println("Random:"+rand_row);
-			
+			int rand_zombie = random.nextInt(0,timer.getTime());		
+			Zombie zombie;
 			if(rand_zombie<=200){
 				zombie = new Zombie("Zombie", rand_row, 9);
 			}

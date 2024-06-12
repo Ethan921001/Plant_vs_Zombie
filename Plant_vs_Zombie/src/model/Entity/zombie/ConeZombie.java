@@ -14,7 +14,7 @@ public class ConeZombie extends Zombie{
 	}
 	
 	public void turn_to_attack(){
-		if (this.get_health()>=2) {
+		if (this.get_health()>=5) {
 			set_imgsrc("Images/Zombies/coneheadZombieAttack.gif");
 		}
 		else {

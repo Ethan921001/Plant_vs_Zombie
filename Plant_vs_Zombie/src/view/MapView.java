@@ -173,7 +173,7 @@ public class MapView extends JFrame implements WindowListener{
 		
 		boolean gameover = judger.gameover(zombies);
 		//若沒輸，正常繪製遊戲畫面，否則繪製gameover字樣，並模糊遊戲畫面
-		if(!gameover) {
+		if(!GameState.gameover) {
 			//this.getGraphics().drawImage(offScreenImage,0,0,null);
 			//label.getGraphics().drawImage(offScreenImage,0,0,null);
 			label.setIcon(new ImageIcon(offScreenImage));

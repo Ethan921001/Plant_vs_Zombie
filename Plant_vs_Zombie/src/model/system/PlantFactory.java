@@ -57,6 +57,9 @@ public class PlantFactory {
 		if(row>=0 && row<=4 && col>=0 && col<=8) {
 			if(plants_arr[row][col]!=null && plants_arr[row][col].is_alive()) {
 				plants_arr[row][col].set_health(0);
+				placeSound = new MusicPlayer();
+				placeSound.setFile("Audio/placePlantWAV.wav");
+				placeSound.start();
 			}
 		}
 	}
@@ -93,6 +96,14 @@ public class PlantFactory {
 					evolution_sound.start();
 				}
 				
+			}
+		}
+	}
+	
+	public void clearArray() {
+		for(int i=0;i<=4;i++) {
+			for(int j=0;j<=8;j++) {
+				plants_arr[i][j]=null;
 			}
 		}
 	}

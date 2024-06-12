@@ -138,7 +138,8 @@ public class GameStage {
 		bullets.clear();
 		entities.clear();
 		timer.setTimer(0);
-		economySystem.set_sunshine(100);
+		plant_factory.clearArray();
+		economySystem.set_sunshine(1000);
 		initialize_cards();
 	}
 	
