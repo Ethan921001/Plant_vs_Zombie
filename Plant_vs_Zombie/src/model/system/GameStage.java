@@ -139,7 +139,7 @@ public class GameStage {
 		entities.clear();
 		timer.setTimer(0);
 		plant_factory.clearArray();
-		economySystem.set_sunshine(1000);
+		economySystem.set_sunshine(100);
 		initialize_cards();
 	}
 	
